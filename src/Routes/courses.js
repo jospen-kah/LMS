@@ -1,9 +1,6 @@
 const express = require('express');
-const { addCoursesController } = require('../Controllers/courses/add');
-const { viewAllCoursesController } = require("../Controllers/courses/view");
-const {viewSingleCourse} = require("../Controllers/courses/single");
-const {deleteCourse} = require("../Controllers/courses/delete");
-const {updateCourse} = require("../Controllers/courses/update");
+const { addCoursesController, viewAllCoursesController, viewSingleCourse, deleteCourse, updateCourse} = require('../Controllers/courses/course_management');
+
 const router = express.Router();
 
 // Define the POST route for adding courses
