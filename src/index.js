@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require("dotenv");
 const connectDB = require("../src/Config/database");
 const router = require('../src/Routes/courses');
+const authRouter = require('../src/Routes/auth')
 
 const app = express();
 dotenv.config();
@@ -9,6 +10,7 @@ dotenv.config();
 // Middleware
 app.use(express.json());
 app.use('/courses', router);
+app.use('/auth', authRouter);
 
 
 const PORT = process.env.PORT || 3000;
