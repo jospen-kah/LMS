@@ -48,7 +48,7 @@ async function authLoginController(req, res){
             { expiresIn: "1h" }
 
         );
-        console.log(key, token)
+        console.log(key ,"hello",token)
 
         res.status(200).json({
             message: "Login Successful",
@@ -63,26 +63,23 @@ async function authLoginController(req, res){
 
 }
 
-async function checkRole(requiredRole) {
-    return (req, res, next) => {
-      const token = req.header("Authorization")?.split(" ")[1]; // Extract token from "Bearer <token>"
-      if (!token) return res.status(401).json({ message: "Access denied. No token provided." });
-  
-      try {
-        const decoded = jwt.verify(token, key);
-        req.user = decoded;
-  
-        // Check user role
-        if (req.user.role !== requiredRole) {
-          return res.status(403).json({ message: "Permission denied. Insufficient role." });
-        }
-  
-        next();
-      } catch (err) {
-        res.status(400).json({ message: "Invalid token." });
-      }
-    };
-  }
+
+async function checkRole(req, res ) {
+
+    try {
+      const { role } = await req.query;
+      const user = await User.findOne({ role });
+
+      if (!user) return res.status(404).json({ message: "User not found" });
+      if (user.role !== "admin") return res.status(403).json({ message: "Access denied. Admins only." });
+      else res.status(200).json({ message: "Welcome to admin dashboard!"})
+    
+    } catch (err) {
+      res.status(500).json({ message: "An error occurred", error: err.message });
+    }
+  };
+
+
   
 
 module.exports = {authRegisterController, authLoginController, checkRole}
