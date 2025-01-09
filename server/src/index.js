@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("../src/Config/database");
 const router = require('../src/Routes/courses');
 const authRouter = require('../src/Routes/auth')
+const quizRouter = require('../src/Routes/quiz')
 
 const app = express();
 dotenv.config();
@@ -11,9 +12,9 @@ dotenv.config();
 app.use(express.json());
 app.use('/courses', router);
 app.use('/auth', authRouter);
+app.use('/quiz', quizRouter)
 
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 connectDB() 
   .then(() => {
