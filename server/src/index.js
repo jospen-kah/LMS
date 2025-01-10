@@ -4,11 +4,13 @@ const connectDB = require("../src/Config/database");
 const router = require('../src/Routes/courses');
 const authRouter = require('../src/Routes/auth')
 const quizRouter = require('../src/Routes/quiz')
+const cors = require('cors')
 
 const app = express();
 dotenv.config();
 
 // Middleware
+app.use(cors())
 app.use(express.json());
 app.use('/courses', router);
 app.use('/auth', authRouter);
