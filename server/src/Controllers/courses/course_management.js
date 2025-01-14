@@ -38,7 +38,7 @@ async function viewSingleCourse(req, res){
 //create New course
 async function addCoursesController(req, res){
     
-  const{ course_name, course_code }= await req.body;
+  const{ course_name, course_code, course_image }= await req.body;
   if(!course_name || !course_code){
       return res.status(400).json({ message: ' course_name and course_code  are required.' });
   }
@@ -48,7 +48,8 @@ try{
   // create a new course document and save it
   const newCourse = new courses({
       course_name,
-      course_code
+      course_code,
+      course_image
   });
 
 await newCourse.save();
