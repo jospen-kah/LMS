@@ -49,7 +49,8 @@ try{
   const newCourse = new courses({
       course_name,
       course_code,
-      course_image
+      course_image,
+      description,
   });
 
 await newCourse.save();

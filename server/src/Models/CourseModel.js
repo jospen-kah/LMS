@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const courseSchema = new mongoose.Schema({
     course_name: { type: String},
     course_code: { type: String},
-    course_image: {type: String}
+    course_image: {type: String},
+    description: {type: String}
 });
 
 
