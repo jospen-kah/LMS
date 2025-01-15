@@ -1,73 +1,48 @@
-// import { useEffect, useState } from 'react';
 import './App.css';
-import Registration from './components/Authentication/Registration';
-import Login from './components/Authentication/Login';
-import Home from './components/Home';
-// import Community from './components/community';
-// 
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-
-// import axios from "axios"
-function App() {
-
-
-  // const [coursesData, setCoursesData] = useState([{}])
-
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/courses/")
-  //     .then(response => response.json())
-  //     .then(
-  //       data => {
-  //         setCoursesData(data)
-  //         console.log("data", data)
-
-  //       }
-  //     )
-  // }, [])
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Home from "./pages/Home"; 
+import Community from "./pages/community"; 
+import About from "./pages/About"; 
+import Login from "./pages/Login"; 
+import Register from "./pages/Registration";
+import WebsiteLayout from "./components/layout";
+import Footer from "./components/Footer";
+import Courses from "./pages/Courses";
+import Leadership from "./pages/Leadership";
+import Development from './pages/Development';
+import Portal from './pages/Portal';
+import Business from './pages/Business';
 
 
-  // useEffect(()=> {
-  //   const getdata = async() =>{
-  //     try{
-
-  //       const data = await axios.get("http://localhost:5000/courses/")
-  //       console.log("data here", data)
-  //       return data
-  //     }catch(error){
-  //       console.log(error)
-  //     }
-
-  //   }
-
-  //   getdata()
-  // },[])
-
-
-
+// Website layout with Navbar
+const App = () =>{
   return (
     <BrowserRouter>
-    <div className='app'>
-    
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/register' element={<Registration />} />
-          <Route path='login' element={<Login />} />
-         </Routes>
-      
-
-      {/* {
-        coursesData.map((data) => {
-          return <>
-            <h1> Course Name : {data.course_name}</h1>
-            <h1> Course Code : {data.course_code}</h1>
-          </>
+      <Routes>
+        <Route element={<WebsiteLayout />}>
+         <Route path="/" element={<Home />}/>
+         <Route path="/community" element = { <Community />} />
+         <Route path="/about" element = { <About />} />
+         <Route path="/all-courses" element = { <Courses />} />
+         <Route path="/leadership" element = { <Leadership />} />
+         <Route path="/business-and-Entrepreneuship" element = { <Business />} />
+         <Route path="/personal-Development" element = { <Development />} />
 
 
-        })
-      } */}
-    </div>
+        </Route>
+
+        <Route path="/login" element= { <Login />} />
+        <Route path="/register"  element = { <Register />} />
+        <Route path="/portal" element = { <Portal />} />
+      </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
 
-export default App
+
+
+export default App;
+
+
+
