@@ -28,7 +28,7 @@ const Login = () => {
             }
         }catch(error){
             console.error('Error', error)
-            setMessage('An error occured. Incorrect email or Password.')
+            setMessage('An error occured. Incorrect email or wrong Password.')
         }
     }
  
@@ -64,7 +64,7 @@ const Login = () => {
                         required
                         name="password"></input>
                         <button type="submit" className="signin-button">Sign In</button>
-                        {message && <p>{message}</p>}
+                        {message && <p className='message'>{message}</p>}
                     </form>
                     <div className="recall">
                         <div className="remember">

@@ -101,9 +101,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 350px;
+  background-color: #afafb156;
 
-  .img{
-    
+  img{
+    margin-top: 2.5rem;
+    border-radius: 50%;
+  }
+  .real-result{
+    display: inline;
+    /* border: 1px solid black; */
+    text-align: left;
+    width: 40%;
+    font-size: 25px;
+    margin: 2rem;
+    color: #000;
+    font-weight: 700;
+    h2{
+      text-align: center;
+      color:rgb(69, 154, 250);
+      font-size:x-large;
+      font-weight: 100;
+    }
   }
 }
 }
@@ -271,6 +291,18 @@
           font-weight: bold;
           margin-bottom: 2px;
         }
+        .signin-button {
+          width: 100%;
+          height: 40px;
+          border-radius: 5px;
+          background-color: #5278E3;
+          color: white;
+          border: none;
+          
+        }
+        .message{
+            color:red;
+          }
       }
 
       .recall {
@@ -303,14 +335,7 @@
       }
     }
 
-    .signin-button {
-      width: 100%;
-      height: 40px;
-      border-radius: 5px;
-      background-color: #5278E3;
-      color: white;
-      border: none;
-    }
+   
 
     .signin-button:hover {
       background-color: #0846ee;

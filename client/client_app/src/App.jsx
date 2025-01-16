@@ -12,10 +12,12 @@ import Leadership from "./pages/Leadership";
 import Development from './pages/Development';
 import Portal from './pages/Portal';
 import Business from './pages/Business';
+import PrivateRoute from './pages/PrivateRoute';
 
 
 // Website layout with Navbar
 const App = () =>{
+  const isAuthenticated = Boolean(localStorage.getItem('token'));
   return (
     <BrowserRouter>
       <Routes>
@@ -27,6 +29,9 @@ const App = () =>{
          <Route path="/leadership" element = { <Leadership />} />
          <Route path="/business-and-Entrepreneuship" element = { <Business />} />
          <Route path="/personal-Development" element = { <Development />} />
+         <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/dashboard" element={<Portal />} />
+        </Route>
 
 
         </Route>
