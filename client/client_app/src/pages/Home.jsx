@@ -19,13 +19,30 @@ const Home = () => {
                             <p>Learn in-demand skills free of charge.
                                 Including marketing, finance, digital business skills, and more.</p>
                         </div>
-                        
+
                     </div>
                     <a href="/about">More about LMS</a>
                 </div>
             </div>
             <div className="testimonials">
-
+                <div className="test-1">
+                    <p>Knowledge is your superpower invest in
+                        learning today to shape a brighter tomorrow!</p>
+                </div>
+                <div className="test-2">
+                    <div className="sub-test-1">
+                        <h1>50+</h1>
+                        <p>New learners</p>
+                    </div>
+                    <div className="sub-test-2">
+                        <h1>5+</h1>
+                        <p>Regions</p>
+                    </div>
+                </div>
+            </div>
+            <div className="real">
+                <img src="" alt="" />
+                <p className="result"></p>
             </div>
         </div>
     )

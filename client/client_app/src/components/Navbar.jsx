@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -24,13 +24,13 @@ const Navbar = () => {
         </div>
          <nav className="navigate">
       
-            <Link to="/">Home</Link>
-            <Link to="/community">Community</Link>
-            <Link to="/about">About</Link>
+            <NavLink to="/" end className={({isActive}) => (isActive) ? "active" : "inactive"}>Home</NavLink>
+            <NavLink to="/community" end className={({isActive}) => isActive ?'active': 'inactive'}>Community</NavLink>
+            <NavLink to="/about" end className={({isActive}) => isActive ?'active': 'inactive'}>About</NavLink>
         </nav>
     <div  className="portal">
         <nav>
-             <Link to="/login">Login to portal</Link>
+             <NavLink to="/login" end>Login to portal</NavLink>
         </nav>
     </div>
         
