@@ -31,6 +31,41 @@ const App = () => {
           <Route path="/personal-Development" element={<Development />} />
         </Route>
 
+        
+        <Route
+            path="/portal/:courseName"
+            element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Portal />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/leadership"
+            element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Leadership />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/business-and-entrepreneurship"
+            element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Business />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/personal-development"
+            element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Development />
+              </PrivateRoute>
+            }
+          />
+       
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/portal" element={<Portal />} />
