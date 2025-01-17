@@ -6,7 +6,7 @@ const key = process.env.KEY
 async function authRegisterController(req, res){
 
    try {
-       const { username, email, password, role } = await req.body;
+       const { username, email, password, role, course } = await req.body;
        const existingUser = await User.findOne({ email });
        if (existingUser) return res.status(400).json({ message: "User already exist" })
 
@@ -20,13 +20,15 @@ async function authRegisterController(req, res){
         email, 
         password: hashedPassword,
         role: role || "student",
+        course,
     });
        // await newUser.save();
 
        res.status(201).json({ message: "User registered successfully!"});
    }
-   catch (err) {
-       res.status(500).json({ message: "Something went wrong" })
+   catch (error) {
+       console.error("Error", error)
+       res.status(500).json({ message: "Something went wrong", error })
    }
 }
 
@@ -43,16 +45,17 @@ async function authLoginController(req, res){
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
         const token = jwt.sign(
-            { id: user._id, email: user.email, role: user.role },
+            { id: user._id, email: user.email, role: user.role, course: user.course },
             key,
             { expiresIn: "1h" }
 
         );
-        console.log(key ,"hello",token)
+        // console.log(key ,"hello",token)
 
         res.status(200).json({
             message: "Login Successful",
             token,
+            course: user.course,
         });
 
     }

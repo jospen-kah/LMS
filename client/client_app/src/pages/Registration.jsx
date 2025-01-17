@@ -18,7 +18,7 @@ const Registration = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, email, password })
+                body: JSON.stringify({ username, email, password,course })
             });
             const data = await response.json();
             if (response.ok) {

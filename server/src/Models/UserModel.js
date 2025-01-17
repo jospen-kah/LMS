@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
         enum: ['admin', 'student'],
         default: 'student'
     },
+    course: {type: String, required: true},
 });
 
 module.exports = mongoose.model("Users",UserSchema)
