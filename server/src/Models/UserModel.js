@@ -1,17 +1,12 @@
-const express = require('express');
-const mongoose = require("mongoose");
+// UserModel.js
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-//Define the user schema and model
-const UserSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true},
-    email: {type: String, required: true, unique: true},
-    password: {type: String, required: true, unique: true},
-    role:{
-        type: String,
-        enum: ['admin', 'student'],
-        default: 'student'
-    },
-    course: {type: String, required: true},
-});
+const userSchema = new Schema({
+  username: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+}, { discriminatorKey: 'role', collection: 'users' });
 
-module.exports = mongoose.model("Users",UserSchema)
+const User = mongoose.model('User', userSchema);
+module.exports = User;

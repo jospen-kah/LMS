@@ -38,8 +38,8 @@ async function viewSingleCourse(req, res){
 //create New course
 async function addCoursesController(req, res){
     
-  const{ course_name, course_code, course_image }= await req.body;
-  if(!course_name || !course_code){
+  const{ course_name, course_title,course_description, module }= await req.body;
+  if(!course_name || !course_title){
       return res.status(400).json({ message: ' course_name and course_code  are required.' });
   }
 
@@ -48,9 +48,9 @@ try{
   // create a new course document and save it
   const newCourse = new courses({
       course_name,
-      course_code,
-      course_image,
-      description,
+      course_title,
+      course_description,
+      module,
   });
 
 await newCourse.save();
@@ -82,7 +82,7 @@ async function updateCourse(req, res) {
       const updatedCourse = await courses.findByIdAndUpdate(
           new mongoose.Types.ObjectId(courseId),
           updatedCourseData,
-          { new: true }  // Return the updated document
+          { new: true }  
          
       );
       

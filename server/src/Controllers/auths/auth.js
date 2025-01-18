@@ -1,12 +1,14 @@
 const User = require('../../Models/UserModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
+const Student = require('../../Models/StudentSchema');
+const Admin =require('../../Models/AdminSchema')
 const key = process.env.KEY
 
 async function authRegisterController(req, res){
 
    try {
-       const { username, email, password, role, course } = await req.body;
+       const { username, email, password} = await req.body;
        const existingUser = await User.findOne({ email });
        if (existingUser) return res.status(400).json({ message: "User already exist" })
 
@@ -14,16 +16,14 @@ async function authRegisterController(req, res){
        const salt = await bcrypt.genSalt(10);
        const hashedPassword = await bcrypt.hash(password, salt)
 
-       //Create the user
-       const newUser = User.create({ 
+       
+       const newStudent = new Student({ 
         username, 
         email, 
         password: hashedPassword,
-        role: role || "student",
-        course,
+        
     });
-       // await newUser.save();
-
+       await newStudent.save();
        res.status(201).json({ message: "User registered successfully!"});
    }
    catch (error) {
@@ -31,6 +31,7 @@ async function authRegisterController(req, res){
        res.status(500).json({ message: "Something went wrong", error })
    }
 }
+
 
 async function authLoginController(req, res){
     try {
@@ -45,7 +46,7 @@ async function authLoginController(req, res){
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
         const token = jwt.sign(
-            { id: user._id, email: user.email, role: user.role, course: user.course },
+            { id: user._id, email: user.email },
             key,
             { expiresIn: "1h" }
 
@@ -55,7 +56,7 @@ async function authLoginController(req, res){
         res.status(200).json({
             message: "Login Successful",
             token,
-            course: user.course,
+            
         });
 
     }
@@ -66,23 +67,4 @@ async function authLoginController(req, res){
 
 }
 
-
-async function checkRole(req, res ) {
-
-    try {
-      const { role } = await req.query;
-      const user = await User.findOne({ role });
-
-      if (!user) return res.status(404).json({ message: "User not found" });
-      if (user.role !== "admin") return res.status(403).json({ message: "Access denied. Admins only." });
-      else res.status(200).json({ message: "Welcome to admin dashboard!"})
-    
-    } catch (err) {
-      res.status(500).json({ message: "An error occurred", error: err.message });
-    }
-  };
-
-
-  
-
-module.exports = {authRegisterController, authLoginController, checkRole}
+module.exports = {authRegisterController, authLoginController}
