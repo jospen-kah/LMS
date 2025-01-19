@@ -80,7 +80,7 @@ async function updateCourse(req, res) {
       }
 
       const updatedCourse = await courses.findByIdAndUpdate(
-          new mongoose.Types.ObjectId(courseId),
+          courseId,
           updatedCourseData,
           { new: true }  
          

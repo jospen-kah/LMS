@@ -3,7 +3,7 @@ const { addCoursesController, viewAllCoursesController, viewSingleCourse, delete
 
 const router = express.Router();
 
-// Define the POST route for adding courses
+
 router.post('/add', addCoursesController);
 router.get('/', viewAllCoursesController);
 router.get('/:id', viewSingleCourse);

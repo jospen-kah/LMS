@@ -1,5 +1,5 @@
 const express = require("express");
-const modules = require("../../Models/ModuleSchema");
+const modules = require("../Models/ModuleSchema");
 const mongoose = require("mongoose");
 
 // add content
@@ -32,15 +32,23 @@ async function addModule(req, res){
 async function UpdateModule(req, res){
     try{
         const moduleId = req.params.id;
-        const updateModuleData = req.body;
+        const updatedModuleData = req.body;
 
         if(!mongoose.Types.ObjectId.isValid(moduleId)){
             return res.status(400).json({ message: 'Invalid module'})
         }
 
-        const updateModule = await module.findByIdAndUpdate(
-            new.mongoose.
-        )
+        const updatedModule = await module.findByIdAndUpdate(
+          moduleId,
+          updatedModuleData ,
+          {new: true}
+        );
+        if (updatedModule){
+            return res.status(200).json({ message: "Module Updated Successfully"});
+        }
+        else{
+            return res.status(404).json({ message:  `No module found with Id ${moduleId}`})
+        }
     }
     catch(error){
         console.error("Error: ", error)
