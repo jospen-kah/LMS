@@ -38,7 +38,7 @@ async function UpdateModule(req, res){
             return res.status(400).json({ message: 'Invalid module'})
         }
 
-        const updatedModule = await module.findByIdAndUpdate(
+        const updatedModule = await modules.findByIdAndUpdate(
           moduleId,
           updatedModuleData ,
           {new: true}
