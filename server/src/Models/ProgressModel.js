@@ -7,3 +7,4 @@ const ProgressSchema = new Schema({
 });
 
 module.exports = mongoose.model('Progress', ProgressSchema);
+
