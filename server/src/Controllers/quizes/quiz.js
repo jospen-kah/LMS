@@ -6,7 +6,7 @@ async function addQuiz ( req, res){
   try{
     const { questions, passingScore } = req.body;
 
-    if(!questions || !passingScore){
+    if(!questions ){
       return res.status(400).json({ error: "Questions and passingScore are required"})
     }
 
@@ -25,9 +25,9 @@ async function addQuiz ( req, res){
       }
 
      }
- const quiz = new Quiz({ questions, passingScore});
- const savedQuiz = await quiz.save();
- res.status(201).json(savedQuiz);
+        const quiz = new Quiz({ questions, passingScore});
+        const savedQuiz = await quiz.save();
+        res.status(201).json({message: "quiz created successfully", savedQuiz});
 
 }
 catch (error) {
@@ -36,66 +36,63 @@ catch (error) {
 }
 
 // evauate the quiz
-async function evaluateQuiz( req, res){
-  const {answers,quizId} = req.body
-  try{
-    const quiz =  await Quiz.findById(quizId);
+async function evaluateQuiz(req, res) {
+  const { answers, quizId } = req.body;
 
-    if(!quiz){
-      return res.status(404).json({
-        message: "Quiz not found"
-      }
-    
-      const result = [];
-      let correctAnswer = 0;
+  try {
+    // Fetch the quiz by ID
+    const quiz = await Quiz.findById(quizId);
 
-      answers.forEach( ({questionId, answer}) => {
-        const quizQuestion = quiz.questions.find((q) => q._id.toString() == questionId);
+    if (!quiz) {
+      return res.status(404).json({ message: "Quiz not found" });
+    }
 
-        if(!quizQuestion){
-          results.push({
-            questionId, 
-            correct: false;
-            message: "questiion not found in the quiz"
-          });
-        } else if(quizQuestion.correctAnswer ===  answer){
-          correctAnswerscount++;
-          result.push({ 
-             questionId,
+    const results = [];
+    let correctAnswersCount = 0; // Correct the variable name and initialize it
+
+    // Loop through the provided answers
+    answers.forEach(({ questionId, answer }) => {
+      const quizQuestion = quiz.questions.find((q) => q._id.toString() === questionId);
+
+      if (!quizQuestion) {
+        results.push({
+          questionId,
+          correct: false,
+          message: "Question not found in the quiz",
+        });
+      } else if (quizQuestion.correctAnswer === answer) {
+        correctAnswersCount++; // Increment the count of correct answers
+        results.push({
+          questionId,
           correct: true,
-          message: "Correct answer!"
-          })
-         
-        }else {
-          result.push({
-            questionId,
-            correct: false,
-            message: "Incorrect Answer. Try again"
-          });
-        }
-      });
+          message: "Correct answer!",
+        });
+      } else {
+        results.push({
+          questionId,
+          correct: false,
+          message: "Incorrect Answer. Try again.",
+        });
+      }
+    });
 
-      //calculate the score
-      const totalQuestions = quiz.questions.length;
-      const score = (correctAnswerscount/ totalQuestions) * 100;
-      const passed = score >= quiz.passingScore;
+    // Calculate the score
+    const totalQuestions = quiz.questions.length;
+    const score = (correctAnswersCount / totalQuestions) * 100;
+    const passed = score >= quiz.passingScore;
 
-      //Return the results and score
-      return res.status(200).json({
-        results,
-        score,
-        passed,
-        message: passed
-        ? "Congratulations! You passed the quiz"
-        : "Unfortunately, you did not pass the quiz."
-      });
-
-    )
-    }
-    catch(error){
-      return res.status(500).json({error: error.message})
-    }
+    // Return the results and score
+    return res.status(200).json({
+      results,
+      score,
+      passed,
+      message: passed
+        ? "Congratulations! You passed the quiz."
+        : "Unfortunately, you did not pass the quiz.",
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
- 
 }
+
 module.exports =  { addQuiz, evaluateQuiz};
