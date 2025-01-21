@@ -12,12 +12,12 @@ import Leadership from "./pages/Leadership";
 import Development from './pages/Development';
 import Portal from './pages/Portal';
 import Business from './pages/Business';
-import PrivateRoute from './pages/PrivateRoute';
+// import PrivateRoute from './pages/PrivateRoute';
 
 
 // Website layout with Navbar
 const App = () => {
-  const isAuthenticated = Boolean(localStorage.getItem('token'));
+  // const isAuthenticated = Boolean(localStorage.getItem('token'));
   return (
     <BrowserRouter>
       <Routes>
@@ -32,39 +32,7 @@ const App = () => {
         </Route>
 
         
-        <Route
-            path="/portal/:courseName"
-            element={
-              <PrivateRoute isAuthenticated={isAuthenticated}>
-                <Portal />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/leadership"
-            element={
-              <PrivateRoute isAuthenticated={isAuthenticated}>
-                <Leadership />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/business-and-entrepreneurship"
-            element={
-              <PrivateRoute isAuthenticated={isAuthenticated}>
-                <Business />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/personal-development"
-            element={
-              <PrivateRoute isAuthenticated={isAuthenticated}>
-                <Development />
-              </PrivateRoute>
-            }
-          />
-       
+        
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
