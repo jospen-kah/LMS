@@ -6,6 +6,7 @@ body{
   background-color: #F7F7F8;
 }
 .navbar{
+  z-index: 999;
   top: 0;
   /* background-color: #a5b0b8; */
   background-color: #F7F7F8;
@@ -121,7 +122,8 @@ body{
         height: 43px;
         background-color: #F1F1F3;
         span{
-          color: #0095FF
+          color: #0095FF;
+          padding-left: .2rem;
         }
         
         .zap{
@@ -157,6 +159,34 @@ body{
       }
 
     }
+
+    
+  }
+
+  .content-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #000;
+
+    .benefits-list{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      
+   
+  
+    .item{
+      width: 300px;
+      height: 300px;
+      border: 1px solid #1212c7;
+      position: relative;
+      
+     
+    }
+
+  }
 
     
   }
