@@ -6,7 +6,8 @@ const courseSchema = new Schema({
     course_name: { type: String, required: true},
     course_title: { type: String, required: true},
     course_description: {type: String, required: true},
-    module: [{ type: Schema.Types.ObjectId, ref: 'Module'}]
+    module: [{ type: Schema.Types.ObjectId, ref: 'Module', required: true}],
+    course_image: {type: String, required: true}
 });
 
 

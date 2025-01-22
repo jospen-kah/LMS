@@ -1,6 +1,6 @@
 const express = require("express");
 const modules = require("../Models/ModuleSchema");
-const mongoose = require("mongoose");
+const Quizzes = require("../Models/QuizSchema");
 
 // add content
 async function addModule(req, res){
@@ -11,6 +11,10 @@ async function addModule(req, res){
         })
     } 
     try{
+        const existingQuiz = await Quizzes.findById(quiz);
+        if(!existingQuiz)
+            return res.status(404).json({
+         message : " Quiz not found please provide a valid quiz Id"})
         const newModule = new modules({
             module_name,
             content,

@@ -38,7 +38,7 @@ async function viewSingleCourse(req, res){
 //create New course
 async function addCoursesController(req, res){
     
-  const{ course_name, course_title,course_description, module }= await req.body;
+  const{ course_name, course_title,course_description, module, course_image }= await req.body;
   if(!course_name || !course_title){
       return res.status(400).json({ message: ' course_name and course_code  are required.' });
   }
@@ -51,13 +51,16 @@ try{
       course_title,
       course_description,
       module,
+      course_image,
   });
-
-await newCourse.save();
-res.status(201).json( {
+//   const moduleID = await Module.findById(req.params.id)
+// if moduleId === moduleID{
+  await newCourse.save();
+  res.status(201).json( {
   message: "Course successfully created",
   course: newCourse
 });
+// }
 }
 catch (error){
 console.error("Error creating course: ", error);
