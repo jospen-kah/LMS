@@ -20,6 +20,7 @@ const App = () => {
   // const isAuthenticated = Boolean(localStorage.getItem('token'));
   return (
     <BrowserRouter>
+    
       <Routes>
         <Route element={<WebsiteLayout />}>
           <Route path="/" element={<Home />} />

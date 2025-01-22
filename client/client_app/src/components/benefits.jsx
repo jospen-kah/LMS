@@ -20,7 +20,7 @@ const Benefits = () => {
     ]
 
     return (
-        <div className="content-2">
+        <div className="content-2" id="benefits">
             <div className='benefits'>
                 <h3>Benefits</h3>
                 <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt

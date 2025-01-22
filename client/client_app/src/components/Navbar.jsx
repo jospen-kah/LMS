@@ -1,14 +1,14 @@
 // import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { MoveRight, Star } from "lucide-react"
+import { NavLink } from "react-router-dom";
+import { MoveRight} from "lucide-react"
 
 const Navbar = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleNavigation = (event) => {
-      const path = event.target.value;
-      if (path) navigate(path);
-    };
+    // const handleNavigation = (event) => {
+    //   const path = event.target.value;
+    //   if (path) navigate(path);
+    // };
   return ( 
     <div className="navbar">
         <div className="start"> 
