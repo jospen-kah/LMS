@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaLinkedin , FaPhone, } from "react-icons/fa6";
+// import { Mail } from 'lucide-react';
+import { FaFacebook, FaTwitter, FaLinkedin , FaPhone, FaLocationDot} from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
 
@@ -13,9 +14,19 @@ const Footer = () => {
                             <p>LMS</p>
                         </div>
                         <div className="contact">
-                            <p><MdEmail />Emails</p>
-                            <p><FaPhone />Phone</p>
-                            <p><FaLocationDot />Address</p>
+                            <div className='con'>
+                            <MdEmail />
+                            <p>Emails</p>
+                            </div>
+                            <div className='con'>
+                            <FaPhone />
+                            <p>Phone</p>
+                            </div>
+                            <div className='con'>
+                            <FaLocationDot />
+                            <p>Address</p>
+                            </div>
+                           
                         </div>
                     </div>
                     <div className="footer-links">
@@ -33,19 +44,22 @@ const Footer = () => {
                         <Link to="/about">Our Goals</Link>
                         </div>
                         <div  className="social">
+                            <p>Follow Us</p>
+                            < div className='social-icons'>
                             <div className='facebook'>
-                                <Link to="/facebook.com"><FaFacebook />n</Link>
+                                <Link to="/facebook.com"><FaFacebook style={{color: 'black'}}/></Link>
                             </div>
-                            <div className='twitter'>
-                                <Link to="/x.com"><FaTwitter /></Link>
+                            <div className='facebook'>
+                                <Link to="/x.com"><FaTwitter style={{color: 'black'}}/></Link>
                             </div>
-                            <div className='linkedin'>
-                                <Link to="/linkedin.com"><FaLinkedin /></Link>
+                            <div className='facebook'>
+                                <Link to="/linkedin.com"><FaLinkedin style={{color: 'black'}}/></Link>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                 <p>© 2021 All rights reserved</p>
+                 <p>© 2025 All rights reserved</p>
             </div>
             
         </footer>
