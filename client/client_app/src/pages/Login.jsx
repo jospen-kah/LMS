@@ -22,7 +22,7 @@ const Login = () => {
                 body: JSON.stringify({ email, password }),
             });
             const data = await response.json();
-    
+
             if (response.ok) {
                 if (data.course) {
                     setMessage(data.message);
@@ -43,26 +43,17 @@ const Login = () => {
             setIsLoading(false);
         }
     };
-    
+
 
 
 
 
     return (
         <div className="main-login">
-            <div className="welcome">
-                <h1>WELCOME TO YOUR PORTAL</h1>
-                <div className='line'></div>
-            </div>
             <div className="info">
-                <h1>Sign In To Your Account</h1>
-                <div className="google">
-                    <p>Google</p>
-                </div>
-                <div className='continue'>
-                    <div className='line'></div>
-                    <p>Or continue with</p>
-                    <div className='line'></div>
+                <div className='head'>
+                    <h1>Login</h1>
+                    <p>Welcome back! Please login in to access your account</p>
                 </div>
                 <div className="details">
                     <form onSubmit={handleSubmit} className="login-form">
@@ -70,13 +61,14 @@ const Login = () => {
                         <input type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required name="email"></input>
+                            required name="email" placeholder='Enter Your Email'/>
                         <p>Password</p>
                         <input type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            name="password"></input>
+                            name="password" placeholder='Enter Your password' />
+                        
                         <button type="submit" className="signin-button" disabled={isLoading}>
                             {isLoading ? 'Signing In...' : 'Sign In'}
                         </button>
@@ -94,12 +86,7 @@ const Login = () => {
                     </div>
 
                 </div>
-                <div className='unregister'>
-                    <p>No Account Yet?</p>
-                    <nav>
-                        <Link to="/register">Sign up</Link>
-                    </nav>
-                </div>
+
 
             </div>
 

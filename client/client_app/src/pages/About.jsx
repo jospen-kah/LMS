@@ -1,10 +1,14 @@
-
+import Skills from '../components/skills';
+import Achievement from '../components/achievements';    
+import Goals  from '../components/goals';
 
 
 const About= () =>{
     return(
-        <diV>
-            <h1>about</h1>
+        <diV className="about">
+            <Skills />
+            <Achievement  />
+            <Goals />
         </diV>
     )
 }
