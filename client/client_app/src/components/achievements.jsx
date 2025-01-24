@@ -1,9 +1,30 @@
+import {Crown, Club, Medal, Handshake} from 'lucide-react'
 const Achievements = () => {
+    const key1 = <Crown strokeWidth={3} color="#0095FF" fill='#0095FF' size={18}/>;
+    const key2 = <Club strokeWidth={3} color="#0095FF" fill='#0095FF' size={18}/>;
+    const key3 = <Medal strokeWidth={2} color="#0095FF"  size={18}/>;
+    const key4 = <Handshake strokeWidth={2} color="#0095FF"  size={18}/>;
     const text = [
-        ["text1", "text2", "text3"],
-        ["text4", "text5", "text6"],
-        ["text7", "text8", "text9"],
-        ["text10", "text11", "text12"],
+            {
+                icon: key1, 
+                title: "Trusted By Thousand", 
+                description: "We have successfully served thousands of students, helping them unlock their potential and achieve their career goals."
+            },
+            {
+                icon: key2, 
+                title: "Positive Student Feedback", 
+                description: "We take pride in the positive feedback we receive from our students, who appreciate the practicality and relevance of our course materials."
+            },
+            {
+                icon: key3, 
+                title: "Award-Winning Courses", 
+                description: "Our courses have received recognition and accolades in the industry for their quality, depth of content, and effective teaching methodologies."
+            },
+            {
+                icon: key4, 
+                title: "Industry Partnerships", 
+                description: "We have established strong partnerships with industry leaders, enabling us to provide our students with access to the latest tools and technologies"
+            }
     ]
     return (
         <div className="achievements">
@@ -19,13 +40,13 @@ const Achievements = () => {
                     text.map((item, index) => (
                         <div key={index} className="card">
                             <div className="icon">
-                                {item[0]}
+                                {item.icon}
                             </div>
                             <div className="title">
-                                {item[1]}
+                                {item.title}
                             </div>
                             <div className="description">
-                                {item[2]}
+                                {item.description}
                             </div>
                         </div>
                     ))
