@@ -61,29 +61,31 @@ const Login = () => {
                         <input type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required name="email" placeholder='Enter Your Email'/>
+                            required name="email" placeholder='Enter Your Email' />
                         <p>Password</p>
                         <input type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             name="password" placeholder='Enter Your password' />
-                        
+
+                        <div className="recall">
+                            <div className="remember">
+                                <input type="radio"/>
+                                <p>Remember Me</p>
+                            </div>
+
+                            <nav>
+                                <Link to="/"><p className='forgotten'>Forgot Password?</p></Link>
+                            </nav>
+                        </div>
+
                         <button type="submit" className="signin-button" disabled={isLoading}>
                             {isLoading ? 'Signing In...' : 'Sign In'}
                         </button>
                         {message && <p className='message'>{message}</p>}
                     </form>
-                    <div className="recall">
-                        <div className="remember">
-                            <div className='tick'></div>
-                            <p>Remember Me</p>
-                        </div>
 
-                        <nav>
-                            <Link to="/"><p className='forgotten'>Forgot Password?</p></Link>
-                        </nav>
-                    </div>
 
                 </div>
 

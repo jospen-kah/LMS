@@ -57,7 +57,14 @@ const Registration = () => {
                         <input type="password" value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required name="password" placeholder="Enter your password"/>
+                         <div className="recall">
+                            <div className="remember">
+                                <input type="radio"/>
+                                <p>Remember Me</p>
+                            </div>
 
+                            
+                        </div>
 
                         <button type="submit" className="signin-button">Sign Up</button>
                         {message && <p>{message}</p>}
