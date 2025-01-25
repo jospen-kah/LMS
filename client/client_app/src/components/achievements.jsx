@@ -1,9 +1,9 @@
 import {Crown, Club, Medal, Handshake} from 'lucide-react'
 const Achievements = () => {
-    const key1 = <Crown strokeWidth={3} color="#0095FF" fill='#0095FF' size={18}/>;
-    const key2 = <Club strokeWidth={3} color="#0095FF" fill='#0095FF' size={18}/>;
-    const key3 = <Medal strokeWidth={2} color="#0095FF"  size={18}/>;
-    const key4 = <Handshake strokeWidth={2} color="#0095FF"  size={18}/>;
+    const key1 = <Crown strokeWidth={3} color="rgb(25 25 25)" fill='rgb(25 25 25)' size={18}/>;
+    const key2 = <Club strokeWidth={3} color="rgb(25 25 25)" fill='rgb(25 25 25)' size={18}/>;
+    const key3 = <Medal strokeWidth={2} color="rgb(25 25 25)"  size={18}/>;
+    const key4 = <Handshake strokeWidth={2} color="rgb(25 25 25)"  size={18}/>;
     const text = [
             {
                 icon: key1, 
