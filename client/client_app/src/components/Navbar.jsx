@@ -1,9 +1,15 @@
-// import React from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { MoveRight, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
   // const navigate = useNavigate();
 
   // const handleNavigation = (event) => {
@@ -17,7 +23,23 @@ const Navbar = () => {
         </p> <MoveRight />
       </div>
       <div className="nav-sign">
-        <button>< Menu /></button>
+        
+          <div className="menu" onClick={toggleMenu}>
+            {menuOpen ? "x" : < Menu />}
+          </div>
+          
+            {menuOpen && (
+              <div className="menu-toggle">
+            <NavLink to="/" onClick={toggleMenu}>Home</NavLink>
+            <NavLink to="/all-courses" onClick={toggleMenu}>Courses</NavLink>
+            <NavLink to="/community" onClick={toggleMenu}> Community</NavLink>
+            <NavLink to="/about" onClick={toggleMenu}>About</NavLink>
+             <div style={{ width:"100%", height:"100vh", opacity:"0.8" }}/>
+             </div>
+           
+            )}
+        
+      
         <div className="nav-logo">
           <div className="logo">LMS</div>
           <div className="nav-content">

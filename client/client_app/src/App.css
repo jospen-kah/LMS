@@ -37,10 +37,13 @@ body {
     margin: .5rem 2rem;
     display: flex;
     justify-content: space-between;
-
-    button{
+    .menu{
       display:none;
     }
+    .menu-toggle{
+      display: none;
+    }
+   
   }
 
   .nav-logo {
@@ -746,12 +749,25 @@ footer {
       /* border: 1px solid black; */
       background-color: #fff;
 
-      button {
+      .menu {
         display: block;
-        background: transparent;
-        border: none;
-        cursor: pointer;
+        padding: 1rem;
+
       }
+      .menu-toggle{
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        left: 0rem;
+        top:6rem;
+        height: 100vh;
+        width: 50%;
+        background-color: #FFF;
+        padding-left: 2rem;
+        justify-content: space-between;
+      }
+      
+    
 
 
 
@@ -1317,9 +1333,9 @@ footer {
       border: 1px solid #E4E4E7;
       padding: 0 .5rem;
       border-radius: 5px;
-      text-align: justify
+      text-align: justify;
 
-      h1 {
+      h1{
         padding-top: .6rem;
       }
     }
