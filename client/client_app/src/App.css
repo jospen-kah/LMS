@@ -707,16 +707,17 @@ footer {
 }
 
 /* Mobile view */
-@media (max-width: 490px) {
+@media (max-width: 480px) {
 
   .navbar {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     height: 50px;
     z-index: 999;
     top: 0;
     background-color: #F7F7F8;
     display: inline;
     position: fixed;
+    /* width: 80%; */
 
 
 
@@ -866,7 +867,7 @@ footer {
 
         .quote-2 {
           /* margin-top: -1rem; */
-          padding-top: 1rem;
+          padding-top: 1.5rem;
           font-size: 25px;
           font-weight: 10px;
         }
@@ -893,7 +894,7 @@ footer {
         img {
           width: 100%;
           border-radius: 5px;
-          height: 500px;
+          height:200px;
         }
 
       }
@@ -1220,7 +1221,7 @@ footer {
   }
 
   .main-login {
-    display: none;
+    /* display: none; */
     margin-top: 10rem;
     display: flex;
     justify-content: center;
@@ -1306,16 +1307,17 @@ footer {
   }
 
   .about {
-    display: none;
+    /* display: none; */
     margin-top: 10rem;
     padding: 3rem;
 
     .skill {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       border: 1px solid #E4E4E7;
       padding: 0 .5rem;
       border-radius: 5px;
+      text-align: justify
 
       h1 {
         padding-top: .6rem;
@@ -1330,7 +1332,7 @@ footer {
       .achievement-2 {
         margin-top: 2rem;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: 3rem;
 
         .card {
@@ -1373,7 +1375,7 @@ footer {
       .goal-2 {
         margin-top: 2rem;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: 3rem;
 
         .card {
