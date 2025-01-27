@@ -1,6 +1,6 @@
 // import React from "react";
 import { NavLink } from "react-router-dom";
-import { MoveRight } from "lucide-react";
+import { MoveRight, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -17,6 +17,7 @@ const Navbar = () => {
         </p> <MoveRight />
       </div>
       <div className="nav-sign">
+        <button>< Menu /></button>
         <div className="nav-logo">
           <div className="logo">LMS</div>
           <div className="nav-content">
