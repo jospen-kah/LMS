@@ -713,6 +713,7 @@ footer {
 @media (max-width: 480px) {
 
   .navbar {
+    width: 80%;
     border: 1px solid red;
     height: 50px;
     z-index: 999;
@@ -743,7 +744,8 @@ footer {
 
     .nav-sign {
       /* margin-top: 1rem; */
-      margin-left: 1rem;
+      /* margin-left: 1rem; */
+      padding: 0 1rem;
       display: flex;
       justify-content: space-between;
       /* border: 1px solid black; */
@@ -786,6 +788,7 @@ footer {
         align-items: center;
 
         .logo {
+          display: none;
           background-color: rgb(25 25 25);
           /* padding: .5rem; */
           width: 35px;
@@ -853,6 +856,7 @@ footer {
     /* display: none; */
     max-width: 480px;
     margin-top: 10rem;
+    width: 80%;
 
     .content-1 {
       /* border: 1px solid red; */
@@ -861,6 +865,7 @@ footer {
       margin: 0 5rem;
       justify-content: center;
       align-items: center;
+    
 
       .quotes {
         text-align: center;
@@ -875,6 +880,8 @@ footer {
           font-size: 20px;
           height: 43px;
           background-color: #F1F1F3;
+          padding: 1rem 0;
+          width: 100%;
 
           span {
             color: rgb(25 25 25);
@@ -890,23 +897,30 @@ footer {
         
 
         .quote-2 {
+          display: none;
           /* margin-top: -1rem; */
-          padding-top: 1.5rem;
+          padding-top: 3rem ;
           font-size: 25px;
           font-weight: 10px;
+          padding-bottom: -1rem;
         }
 
         .quote-3 {
-          margin-top: -2rem;
+          display: none;
+          margin-top: 0;
           font-size: 20px;
           font-weight: 10px;
+          
         }
 
         .explore {
+          margin-top: 1rem;
           background-color: rgb(25 25 25);
-          padding: 0 1rem;
+          padding: .5rem;
           border-radius: 5px;
           color: #fff;
+          width: 250px;
+          
         }
       }
 
@@ -918,7 +932,7 @@ footer {
         img {
           width: 100%;
           border-radius: 5px;
-          height:200px;
+          height:100px;
         }
 
       }
@@ -942,6 +956,7 @@ footer {
           margin-left: 0rem;
           width: 100%;
           text-align: center;
+          padding: 0 2rem;
           /* border-radius: 1px solid red; */
         
       }
@@ -1134,6 +1149,7 @@ footer {
   footer {
     /* display: none; */
     background-color: #FFF;
+    width: 80%;
 
     .footer-container {
 
