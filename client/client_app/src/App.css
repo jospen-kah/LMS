@@ -765,6 +765,14 @@ footer {
         background-color: #FFF;
         padding-left: 2rem;
         justify-content: space-between;
+
+        a{
+          text-decoration: none;
+          color: #000;
+          font-weight: bold;
+          font-size: 20px;
+          padding: 1rem;
+        }
       }
       
     

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { MoveRight, Menu } from "lucide-react";
+import { MoveRight, Menu, SquareX } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="nav-sign">
         
           <div className="menu" onClick={toggleMenu}>
-            {menuOpen ? "x" : < Menu />}
+            {menuOpen ? <SquareX /> : < Menu />}
           </div>
           
             {menuOpen && (
