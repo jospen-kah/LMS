@@ -4,7 +4,9 @@ const User = require('./UserModel');
 const { Schema } = mongoose;
 
 const StudentSchema = new Schema({
-    enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }]
+    isFirstLogin: { type: Boolean, default: true},
+    isEnrolled: {type: Boolean, default: false},
+
 });
 
 const Student = User.discriminator('Student', StudentSchema);

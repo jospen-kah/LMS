@@ -2,7 +2,7 @@ const User = require('../../Models/UserModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const Student = require('../../Models/StudentSchema');
-const Admin =require('../../Models/AdminSchema')
+// const Admin =require('../../Models/AdminSchema')
 const key = process.env.KEY
 
 async function authRegisterController(req, res){
@@ -56,8 +56,15 @@ async function authLoginController(req, res){
         res.status(200).json({
             message: "Login Successful",
             token,
+            isFirstLogin: User.isFirstLogin,
+            isEnrolled: User.isEnrolled,
             
         });
+
+        if(user.isFirstLogin){
+            User.isFirstLogin = false;
+            await User.save(); 
+        }
 
     }
     catch (err) {
