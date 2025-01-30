@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Registration";
 import WebsiteLayout from "./components/layout";
 import Footer from "./components/Footer";
-import Courses from "./pages/Courses";
+import Courses from "./components/courses";
 import Portal from './pages/Portal';
 
 

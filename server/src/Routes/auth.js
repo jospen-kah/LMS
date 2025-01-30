@@ -1,7 +1,7 @@
 const express = require("express");
 const { authAdminRegisterController} = require("../Controllers/auths/adminauth");
-const { authLoginController, authRegisterController} = require("../Controllers/auths/auth");
-const authenticate = require('../middleware/role.js');
+const { authLoginController, authRegisterController, enrolledCourse} = require("../Controllers/auths/auth");
+
 
 const authRouter = express.Router();
 authRouter.use(express.json());

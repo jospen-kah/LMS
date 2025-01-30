@@ -1,39 +1,40 @@
 const User = require('../../Models/UserModel')
+const Course = require('../../Models/CourseModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const Student = require('../../Models/StudentSchema');
 // const Admin =require('../../Models/AdminSchema')
 const key = process.env.KEY
 
-async function authRegisterController(req, res){
+async function authRegisterController(req, res) {
 
-   try {
-       const { username, email, password} = await req.body;
-       const existingUser = await User.findOne({ email });
-       if (existingUser) return res.status(400).json({ message: "User already exist" })
+    try {
+        const { username, email, password } = await req.body;
+        const existingUser = await User.findOne({ email });
+        if (existingUser) return res.status(400).json({ message: "User already exist" })
 
-       // Hash the password
-       const salt = await bcrypt.genSalt(10);
-       const hashedPassword = await bcrypt.hash(password, salt)
+        // Hash the password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt)
 
-       
-       const newStudent = new Student({ 
-        username, 
-        email, 
-        password: hashedPassword,
-        
-    });
-       await newStudent.save();
-       res.status(201).json({ message: "User registered successfully!"});
-   }
-   catch (error) {
-       console.error("Error", error)
-       res.status(500).json({ message: "Something went wrong", error })
-   }
+
+        const newStudent = new Student({
+            username,
+            email,
+            password: hashedPassword,
+
+        });
+        await newStudent.save();
+        res.status(201).json({ message: "User registered successfully!" });
+    }
+    catch (error) {
+        console.error("Error", error)
+        res.status(500).json({ message: "Something went wrong", error })
+    }
 }
 
 
-async function authLoginController(req, res){
+async function authLoginController(req, res) {
     try {
         const { email, password } = req.body;
 
@@ -52,18 +53,19 @@ async function authLoginController(req, res){
 
         );
         // console.log(key ,"hello",token)
-
-        res.status(200).json({
+        const responseData = {
             message: "Login Successful",
             token,
             isFirstLogin: User.isFirstLogin,
             isEnrolled: User.isEnrolled,
-            
-        });
+            course: User.course || null, // Send course ID if enrolled
+        };
 
-        if(user.isFirstLogin){
+        res.status(200).json(responseData);
+
+        if (user.isFirstLogin) {
             User.isFirstLogin = false;
-            await User.save(); 
+            await User.save();
         }
 
     }
@@ -74,4 +76,5 @@ async function authLoginController(req, res){
 
 }
 
-module.exports = {authRegisterController, authLoginController}
+
+module.exports = { authRegisterController, authLoginController }

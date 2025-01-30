@@ -1,6 +1,6 @@
 import { useNavigate} from 'react-router-dom';
 import { useState } from 'react';
-
+import axios from 'axios';
 const Registration = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -9,29 +9,42 @@ const Registration = () => {
     const [message, setMessage] = useState('');
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
-            const response = await fetch("http://localhost:5000/auth/register", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, email, password })
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setMessage(data.message)
-                navigate('/login');
-            } else {
-                setMessage(data.message || 'Something went wrong')
-            }
+            const response = await axios.post(
+                "http://localhost:5000/auth/register/user",
+                { username, email, password }, 
+                {
+                    headers: {
+                        'Content-Type': 'application/json', 
+                    },
+                }
+            );
+    
+            
+            setMessage(response.data.message);
+            navigate('/login');
         } catch (error) {
-            console.error('Error', error)
-            setMessage('An error occured. Please try again. ');
+            
+            if (error.response) {
+                
+                console.error('Error Response:', error.response.data);
+                setMessage(error.response.data.message || 'Something went wrong.');
+            } else if (error.request) {
+                
+                console.error('No Response:', error.request);
+                setMessage('Server is not responding. Please try again later.');
+            } else {
+                // General error
+                console.error('Error:', error.message);
+                setMessage('An error occurred. Please try again.');
+            }
         }
-    }
+    };
+    
 
 
 
@@ -67,7 +80,7 @@ const Registration = () => {
                         </div>
 
                         <button type="submit" className="signin-button">Sign Up</button>
-                        {message && <p>{message}</p>}
+                        {message && <p className='error'>{message}</p>}
 
                     </form>
                 </div>

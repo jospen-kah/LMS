@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react'
+import axios from 'axios';
 
 
 const Login = () => {
@@ -14,24 +15,31 @@ const Login = () => {
         setIsLoading(true);
         setMessage('');
         try {
-            const response = await fetch('http://localhost:5000/auth/login', {
-                method: 'POST',
+            const response = await axios.post('http://localhost:5000/auth/login', 
+                { email, password },
+                {
                 headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-            const data = await response.json();
+                }}
+            
+            );
+            const data = await response.data;
 
-            if (response.ok) {
-                if (data.course) {
-                    setMessage(data.message);
-                    localStorage.setItem("user", JSON.stringify(data));
-                    console.log("Navigating to course portal:", data.course);
+            if (response.status === 200) {
+                setMessage(data.message);
+                localStorage.setItem("user", JSON.stringify(data));
+
+                if (data.isFirstLogin) {
+                    console.log("First time login detected, redirecting to courses..")
+                    navigate('/all-courses');
+                }
+                else if(data.isEnrolled){
+                    console.log("User is enrolled, redirecting to courses..")
                     navigate(`/portal/${data.course}`);
-                } else {
-                    setMessage('Course information is missing from the response.');
-                    console.error("Course field is missing in the response:", data);
+                }
+                else {
+                    console.log("User not enrolled but not first-time")
+                    navigate('/all-courses')
                 }
             } else {
                 setMessage(data.message || 'Something went wrong');
@@ -83,7 +91,7 @@ const Login = () => {
                         <button type="submit" className="signin-button" disabled={isLoading}>
                             {isLoading ? 'Signing In...' : 'Sign In'}
                         </button>
-                        {message && <p className='message'>{message}</p>}
+                        {message && <p className='error'>{message}</p>}
                     </form>
 
 

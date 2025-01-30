@@ -21,7 +21,7 @@ async function viewAllCoursesController(req, res){
 async function viewSingleCourse(req, res){
   try{
      const courseId = req.params.id
-     const course = await courses.findById(courseId)
+     const course = await courses.findById(courseId).populate('studentsEnrolled', 'username email');
 
      if(!course) res.status(404).json({ message: `No course with the id of ${courseId} was found`})
 

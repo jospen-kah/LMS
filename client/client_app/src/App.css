@@ -16,9 +16,10 @@ body {
   position: fixed;
   width: 100%;
   justify-content: center;
+  margin: 0;
 
   .start {
-    margin: 0 1rem;
+    /* margin: 0 1rem; */
     border-radius: 5px;
     text-align: center;
     display: flex;
@@ -66,7 +67,7 @@ body {
     .navigate {
       display: flex;
       justify-content: space-evenly;
-      margin-left: 3rem;
+     
 
       .active {
         border-bottom: 2px solid rgb(25 25 25);
@@ -190,6 +191,7 @@ body {
   }
 
   .content-2 {
+    padding: 0 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,13 +199,12 @@ body {
     /* border: 1px solid #000; */
 
     .benefits {
-      width: 50%;
+      /* width: 80%; */
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: left;
-      /* border: 1px solid #000; */
-      margin-left: -25rem;
+      align-items:flex-start;
+      /* border: 1px solid black; */
+    
     }
 
 
@@ -215,9 +216,6 @@ body {
 
 
       .item {
-        width: 250px;
-        height: 200px;
-        /* border: 1px solid #1212c7; */
         border-radius: 5px;
         background-color: #fff;
         position: relative;
@@ -498,6 +496,7 @@ footer {
   }
 }
 
+
 .main-login {
   margin-top: 10rem;
   display: flex;
@@ -542,6 +541,9 @@ footer {
         border: none;
         background-color: #F7F7F8;
       }
+      .error{
+        color:red;
+      }
 
       button {
         width: 102%;
@@ -554,6 +556,9 @@ footer {
         color: #fff;
         font-size: 15px;
 
+      }
+      .error{
+        color: red;
       }
 
       .recall {
@@ -711,23 +716,23 @@ footer {
 
 /* Mobile view */
 @media (max-width: 480px) {
-
+  
   .navbar {
-    width: 80%;
-    border: 1px solid red;
+    width: 100%;
+    /* border: 1px solid red; */
     height: 50px;
     z-index: 999;
     top: 0;
     background-color: #F7F7F8;
-    display: inline;
     position: fixed;
-    /* width: 80%; */
+    margin: 0;
+    
 
 
 
     .start {
-      width: 90%;
-      margin: 0 1rem;
+      
+      width: 100%;
       border-radius: 5px;
       text-align: center;
       display: flex;
@@ -743,12 +748,15 @@ footer {
     }
 
     .nav-sign {
-      /* margin-top: 1rem; */
-      /* margin-left: 1rem; */
-      padding: 0 1rem;
+      width: 90%;
+      margin: 0 ;
+      border-radius: 5px;
+      text-align: center;
       display: flex;
-      justify-content: space-between;
-      /* border: 1px solid black; */
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      color: #fff;
       background-color: #fff;
 
       .menu {
@@ -764,7 +772,7 @@ footer {
         top:6rem;
         height: 100vh;
         width: 50%;
-        background-color: #FFF;
+        background-color: #fff;
         padding-left: 2rem;
         justify-content: space-between;
 
@@ -808,7 +816,7 @@ footer {
           }
 
           a {
-            margin-left: 2rem;
+            /* margin-left: 2rem; */
 
             text-decoration: none;
             color: #000;
@@ -843,6 +851,13 @@ footer {
           color: #fff;
 
         }
+        .sign-up{
+         
+          border-radius: 4px;
+          width: 60px;
+          text-align: center;
+          color: rgb(25  25  25);
+        }
 
         a {
           text-decoration: none;
@@ -856,7 +871,14 @@ footer {
     /* display: none; */
     max-width: 480px;
     margin-top: 10rem;
-    width: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    /* padding-left: 1rem; */
 
     .content-1 {
       /* border: 1px solid red; */
@@ -865,6 +887,8 @@ footer {
       margin: 0 5rem;
       justify-content: center;
       align-items: center;
+      margin-right: 0;
+      margin-left: 0;
     
 
       .quotes {
@@ -926,13 +950,16 @@ footer {
 
       .bg-image {
         padding: 5rem 0;
-        /* background-color: red; */
+        display: flex;
+        justify-content: center;
         width: 100%;
+        align-items:center;
+
 
         img {
-          width: 100%;
+          max-width: 100%;
           border-radius: 5px;
-          height:100px;
+          height:auto;
         }
 
       }
@@ -941,6 +968,7 @@ footer {
     }
 
     .content-2 {
+      padding-left: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -948,13 +976,11 @@ footer {
       /* border: 1px solid #000; */
 
       .benefits {
-        width: 100%;
+        /* width: 100%; */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-          margin-left: 0rem;
-          width: 100%;
           text-align: center;
           padding: 0 2rem;
           /* border-radius: 1px solid red; */
@@ -965,13 +991,9 @@ footer {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 1rem;
-
-
+       
 
         .item {
-          width: 250px;
-          height: 200px;
-          /* border: 1px solid #1212c7; */
           border-radius: 5px;
           background-color: #fff;
           position: relative;
@@ -1149,7 +1171,7 @@ footer {
   footer {
     /* display: none; */
     background-color: #FFF;
-    width: 80%;
+    width: 100%;
 
     .footer-container {
 
@@ -1338,7 +1360,7 @@ footer {
             input {
               width: 20px;
             }
-
+            
           }
         }
       }

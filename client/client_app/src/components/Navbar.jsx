@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="nav-sign">
         
           <div className="menu" onClick={toggleMenu}>
-            {menuOpen ? <SquareX /> : < Menu />}
+            {menuOpen ? <SquareX /> : < Menu color="#000" />}
           </div>
           
             {menuOpen && (
@@ -64,9 +64,6 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-
-
-
     </div>
 
 

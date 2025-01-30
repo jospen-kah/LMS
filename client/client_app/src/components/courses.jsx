@@ -40,7 +40,7 @@ const Courses = () => {
                             </div>
                             <p className='name'>{course.course_name}</p>
                             <p className='description'>{course.course_description}</p>
-                            <button className='get-now'>Get it Now</button>
+                            <button className='enroll'>Get it Now</button>
                         </div>
                         
                     </div>
