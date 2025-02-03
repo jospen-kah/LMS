@@ -9,12 +9,13 @@ import WebsiteLayout from "./components/layout";
 import Footer from "./components/Footer";
 import Courses from "./components/courses";
 import Portal from './pages/Portal';
+import CourseList from './pages/CourseDetails';
+
 
 
 
 // Website layout with Navbar
 const App = () => {
-  // const isAuthenticated = Boolean(localStorage.getItem('token'));
   return (
     <BrowserRouter>
     
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/all-courses" element={<Courses />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/course/:id" element={<CourseDetails />} />
         </Route>
 
         
