@@ -2,6 +2,7 @@ import { Zap } from 'lucide-react';
 import  Benefits from  '../components/benefits';
 import Courses from '../components/courses';
 import Testimonial from '../components/testimonial';
+import { Navigate } from 'react-router';
 
 
 // 

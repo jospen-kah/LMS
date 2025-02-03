@@ -9,7 +9,7 @@ import WebsiteLayout from "./components/layout";
 import Footer from "./components/Footer";
 import Courses from "./components/courses";
 import Portal from './pages/Portal';
-import CourseList from './pages/CourseDetails';
+import CourseDetails from './pages/CourseDetails';
 
 
 
@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/all-courses" element={<Courses />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/course/:id" element={<CourseDetails />} />
+          <Route path="/courses/:id" element={<CourseDetails />} />
         </Route>
 
         

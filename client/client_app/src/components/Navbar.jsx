@@ -10,12 +10,7 @@ const Navbar = () => {
     setMenuOpen(!menuOpen)
   }
 
-  // const navigate = useNavigate();
 
-  // const handleNavigation = (event) => {
-  //   const path = event.target.value;
-  //   if (path) navigate(path);
-  // };
   return (
     <div className="navbar">
       <div className="start">

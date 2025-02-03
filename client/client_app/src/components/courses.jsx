@@ -1,9 +1,11 @@
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Courses = () => {
     const [courses, setCourses] = useState([]);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         axios({
@@ -18,9 +20,11 @@ const Courses = () => {
             .catch(error => {
                 console.error('There was an error fetching the courses!', error);
             });
-    }, []);
+        }, []);
 
-   
+    const handleCourseClick = (courseId) => {
+        navigate(`/courses/${courseId}`); 
+    };
 
     return (
         <div className='content-3'>
@@ -40,7 +44,9 @@ const Courses = () => {
                             </div>
                             <p className='name'>{course.course_name}</p>
                             <p className='description'>{course.course_description}</p>
-                            <button className='enroll'>Get it Now</button>
+                            <button 
+                            onClick={() => handleCourseClick(course._id)}
+                            className='enroll'>Get it Now</button>
                         </div>
                         
                     </div>

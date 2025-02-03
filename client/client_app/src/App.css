@@ -719,7 +719,9 @@ footer {
   }
 
 }
-
+.coursedetails{
+  margin-top: 10rem;
+}
 /* Mobile view */
 @media (max-width: 480px) {
   .content{
