@@ -10,7 +10,7 @@ authRouter.use(express.json());
 authRouter.post("/register/admin", authAdminRegisterController);
 authRouter.post("/register/user", authRegisterController);
 authRouter.post("/login", authLoginController);
-authRouter.put("/enroll", updateStudentEnrollment);
+authRouter.put("/update-enroll", updateStudentEnrollment);
 
 
 module.exports = authRouter;

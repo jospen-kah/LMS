@@ -25,7 +25,7 @@ async function viewSingleCourse(req, res){
 
      if(!course) res.status(404).json({ message: `No course with the id of ${courseId} was found`})
 
-      res.status(200).json({course})
+      res.status(200).json({course, message: "found successfully"})
   }
   catch (error){
       console.error('Error retrieving course', error);

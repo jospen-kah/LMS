@@ -8,7 +8,7 @@ const courseSchema = new Schema({
     course_description: {type: String, required: true},
     studentsEnrolled: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     course_image: {type: String, required: true},
-    isEnrolled: {type: Boolean, default: false},
+
 });
 
 
