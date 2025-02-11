@@ -22,7 +22,7 @@ const Benefits = () => {
     return (
         <div className="content-2" id="benefits">
             <div className='benefits'>
-                <h3>Benefits</h3>
+                <h2>Benefits</h2>
                 <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt
                     etiam eget elit id imperdiet et. Cras eu sit dignissim lorem
                     nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.</p>

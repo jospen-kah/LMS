@@ -1,7 +1,6 @@
 .home .content-1 {
     display: flex;
     flex-direction: column;
-    margin: 0 5rem;
     justify-content: center;
     align-items: center;
 }
@@ -42,11 +41,250 @@
     margin-top: -2rem;
     font-size: 20px;
     font-weight: 10px;
-  }
+}
 
-.quotes .explore {
+.quotes >a {
+    text-decoration: none;
+}
+a .explore {
     background-color: rgb(25 25 25);
-    padding: 0 1rem;
+    padding: .2rem;
+    padding-left:2rem;
+    padding-right: 2rem;
     border-radius: 5px;
     color: #fff;
-  }
+}
+
+.content-1 .bg-image {
+    padding: 5rem;
+}
+
+.bg-image>img {
+    width: 100%;
+    height: auto;
+    box-shadow: 6px 6px 20px rgba(0, 0, 255, 0.15);
+    border-radius: 5px;
+}
+
+.content-2 {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content-2 .benefits {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-2 .benefits-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.benefits-list .item {
+    border-radius: 5px;
+    background-color: #fff;
+    position: relative;
+    padding: 3rem;
+}
+
+.item .avatar {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.item .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5rem;
+}
+
+.item .description {
+    font-size: 15px;
+    margin-top: 1rem;
+}
+
+.item .arrow {
+    position: absolute;
+    background-color: #FCFCFD;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 5px;
+    margin: 1rem;
+}
+
+.content-3 {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-3 .course-card {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-left: 4rem;
+}
+
+.course-card .course-details {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.course-details .name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.course-details .picture {
+    height: 240px;
+    background-color: rgb(90, 87, 87);
+    background-origin: padding-box;
+    border-radius: 5px;
+}
+
+.picture>img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    height: auto;
+}
+
+.course-details>button {
+    background-color: #F7F7F8;
+    padding: .5rem;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    height: 50px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.course-details>button {
+    background-color: rgb(25 25 25);
+    color: #fff;
+    transition-duration: 300ms;
+}
+
+.content-4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content-4 .content-card{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 90%;
+}
+
+.content-card .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 90%;
+    border-radius: 5px;
+    background: #fff;
+    padding: 1rem;
+}
+
+.content-card .info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FCFCFD;
+}
+
+.content-card .author{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.author > img{
+    width: 35px;
+    border-radius: 5px;
+}
+.author > p{
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: .5rem;
+}
+/* tablet mode */
+@media screen and (max-width: 960px){
+.content-1 .quotes .quote-1 > h2{
+    font-size: 20px;
+}
+.quote-1 > h2{
+    padding: 0 1rem;
+}
+.quotes .quote-2{
+    font-size:20px ;
+}
+.quotes .quote-3{
+    font-size:18px ;
+}
+
+a .explore {
+    padding: .1rem;
+    padding-left:2rem;
+    padding-right: 2rem;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* benefits */
+.content-2 .benefits-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.item .avatar {
+    font-size: 40px;
+}
+.item .title{
+    margin-top: 2rem;
+    font-size: 18px;
+}
+.item .description{
+    font-size: 13px;
+}
+
+/* Testimonial */
+.content-4 .content-card{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 90%;
+}
+}
+
+/* mobile mode */
+@media screeen and (max-width: 480px){
+
+}

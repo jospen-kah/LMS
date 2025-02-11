@@ -1,15 +1,15 @@
 import { Zap } from 'lucide-react';
-import  Benefits from  '../components/benefits';
+import Benefits from '../components/benefits';
 import Courses from '../components/courses';
 import Testimonial from '../components/testimonial';
-import { Navigate } from 'react-router';
-// import './Home.css';
+import { Link } from 'react-router';
+import './Home.css';
 
 
 // 
 const Home = () => {
 
-    
+
     return (
         <div className="home">
             <div className=" content-1">
@@ -24,19 +24,22 @@ const Home = () => {
                     <div className="quote-3">
                         <p>Learning from industry expert</p>
                     </div>
-                    <div className="explore">
-                        <p>Explore Courses</p>
-                    </div>
+                    
+                        <Link to="/all-courses">
+                        <div className="explore">
+                            <p>Explore Courses</p>
+                        </div>
+                        </Link>
                 </div>
                 <div className="bg-image">
                     <img src="https://media.istockphoto.com/id/1059510610/vector/it-communication-e-learning-internet-network-as-knowledge-base.jpg?s=612x612&w=0&k=20&c=QEyHx6JnZleLmW9lYgpzvLv765rizr__5zwwKylo300=" alt="img" />
                 </div>
             </div>
-            
-                < Benefits />
-                < Courses />
-                < Testimonial />
-            
+
+            < Benefits />
+            < Courses />
+            < Testimonial />
+
 
         </div>
     )

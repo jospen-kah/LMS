@@ -13,6 +13,9 @@ import CourseDetails from './pages/CourseDetails';
 import ProtectedRoute from "./components/protect"; // Import ProtectedRoute
 
 const App = () => {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      };
     return (
         <BrowserRouter>
             <Routes>
