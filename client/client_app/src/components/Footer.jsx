@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 // import { Mail } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaLinkedin, FaPhone, FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import './Footer.css';
 
 
 const Footer = () => {
@@ -16,15 +17,15 @@ const Footer = () => {
                         <div className="contact">
                             <div className='con'>
                                 <MdEmail />
-                                <p>Emails</p>
+                                <p>lms@gmail.org</p>
                             </div>
                             <div className='con'>
                                 <FaPhone />
-                                <p>Phone</p>
+                                <p>+(237) 6555555</p>
                             </div>
                             <div className='con'>
                                 <FaLocationDot />
-                                <p>Address</p>
+                                <p>Buea</p>
                             </div>
 
                         </div>
@@ -47,13 +48,13 @@ const Footer = () => {
                             <p>Follow Us</p>
                             < div className='social-icons'>
                                 <div className='facebook'>
-                                    <Link to="/facebook.com"><FaFacebook style={{ color: 'black' }} /></Link>
+                                    <Link to="https://www.facebook.com/"><FaFacebook style={{ color: 'black' }} /></Link>
                                 </div>
                                 <div className='facebook'>
-                                    <Link to="/x.com"><FaTwitter style={{ color: 'black' }} /></Link>
+                                    <Link to="https://x.com/"><FaTwitter style={{ color: 'black' }} /></Link>
                                 </div>
                                 <div className='facebook'>
-                                    <Link to="/linkedin.com"><FaLinkedin style={{ color: 'black' }} /></Link>
+                                    <Link to="https://www.linkedin.com/"><FaLinkedin style={{ color: 'black' }} /></Link>
                                 </div>
                             </div>
                         </div>

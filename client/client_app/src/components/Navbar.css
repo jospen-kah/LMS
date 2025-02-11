@@ -90,7 +90,7 @@
       display: flex;
       flex-direction: column;
       justify-content: start;
-      width: 89%;
+      width: 100%;
       height: 90vh;
       position: absolute;
       top: 80px;
@@ -99,7 +99,7 @@
       transition: all 0.5s ease;
       padding-top: 5rem ;
       padding-left: 0;
-      padding: 2rem;
+      /* padding: 2rem; */
     }
   
     .nav-menu.active {
@@ -145,7 +145,7 @@
     .nav-item .nav-links-mobile {
       display: block;
       text-align: center;
-      width: 91%;
+      /* width: 91%; */
       height: 40px;
       text-decoration: none;
       font-size: 1.5rem;
