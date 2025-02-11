@@ -9,6 +9,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,31 +21,29 @@ const Login = () => {
                 { email, password },
                 {
                 headers: {
+                   
                     'Content-Type': 'application/json',
                 }}
             
             );
             const data = await response.data;
+            console.log(token)
+            
 
             if (response.status === 200) {
                 setMessage(data.message);
-                localStorage.setItem("user", JSON.stringify(data));
-
-                if (data.isFirstLogin) {
-                    console.log("First time login detected, redirecting to courses..")
-                    navigate('/all-courses');
-                }
-                else if(data.isEnrolled){
-                    console.log("User is enrolled, redirecting to courses..")
-                    navigate(`/portal/${data.course}`);
-                }
-                else {
-                    console.log("User not enrolled but not first-time")
-                    navigate('/all-courses')
-                }
+                const tokenStorage = localStorage.setItem("token", token);
+                console.log(tokenStorage)
+                const userStorage = localStorage.setItem("user", JSON.stringify(user));
+                console.log(userStorage)
+                console.log(response.data)
+                const redirectPath = new URLSearchParams(window.location.search).get('redirect') || "/all-courses";
+                navigate(redirectPath);
+                
             } else {
                 setMessage(data.message || 'Something went wrong');
             }
+    
         } catch (error) {
             console.error('Error:', error);
             setMessage('An error occurred. Please try again.');

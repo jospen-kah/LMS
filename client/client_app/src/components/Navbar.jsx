@@ -1,70 +1,57 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { MoveRight, Menu, SquareX } from "lucide-react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import { X , Menu} from 'lucide-react';
+import { Button } from './button';
+import './Navbar.css'
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Navbar() {
+    const [ click, setClick] = useState(false);
+    const [button, setButton] = useState(true);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
+    const showButton =()=> {
+      if(window.innerWidth <= 960){
+        setButton(false)
+      } else {
+        setButton(true)
+      }
+    };
 
+    useEffect(() =>{
+    showButton();
+    },[]);
 
+    window.addEventListener('resize', showButton)
   return (
-    <div className="navbar">
-      <div className="start">
-        <p>Free Courses, Get it now!
-        </p> <MoveRight />
-      </div>
-      <div className="nav-sign">
-        
-          <div className="menu" onClick={toggleMenu}>
-            {menuOpen ? <SquareX /> : < Menu color="#000" />}
-          </div>
-          
-            {menuOpen && (
-              <div className="menu-toggle">
-            <NavLink to="/" onClick={toggleMenu}>Home</NavLink>
-            <NavLink to="/all-courses" onClick={toggleMenu}>Courses</NavLink>
-            <NavLink to="/community" onClick={toggleMenu}> Community</NavLink>
-            <NavLink to="/about" onClick={toggleMenu}>About</NavLink>
-             <div style={{ width:"100%", height:"100vh", opacity:"0.8" }}/>
-             </div>
-           
-            )}
-        
-      
-        <div className="nav-logo">
-          <div className="logo">LMS</div>
-          <div className="nav-content">
-            <nav className="navigate">
-
-              <NavLink to="/" end className={({ isActive }) => (isActive) ? "active" : "inactive"}>Home</NavLink>
-              <NavLink to="/all-courses" end className={({ isActive }) => isActive ? 'active' : 'inactive'}>Courses</NavLink>
-              <NavLink to="/community" end className={({ isActive }) => isActive ? 'active' : 'inactive'}>Community</NavLink>
-              <NavLink to="/about" end className={({ isActive }) => isActive ? 'active' : 'inactive'}>About</NavLink>
-
-            </nav>
-          </div>
-        </div>
-        <div className="sign">
-          <Link to="/register">
-            <div className="sign-up">
-              Sign Up
+    <>
+    <nav className='navbar'>
+        <div className='navbar-container'>
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            Log
+            </Link>
+            <div className='menu-icon' onClick={handleClick}>
+            {click ? <X /> : <Menu /> }
             </div>
-          </Link>
-          <Link to="/login">
-            <div className="login">Login</div>
-          </Link>
+            <ul className={click? 'nav-menu active' : 'nav-menu'}>
+            <li className='nav-item'>
+                <Link to="/" className='nav-links' onClick={closeMobileMenu}>Home</Link>
+              </li>
+              <li className='nav-item'>
+                <Link to="/all-courses" className='nav-links' onClick={closeMobileMenu}>Courses</Link>
+              </li>
+              <li className='nav-item'>
+                <Link to="/about" className='nav-links' onClick={closeMobileMenu}>About</Link>
+              </li>
+              <li className='nav-item'>
+                <Link to="/register" className='nav-links-mobile' onClick={closeMobileMenu}>Sign Up</Link>
+              </li>
+            </ul>
+            {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} 
         </div>
-      </div>
-    </div>
-
-
-
-
+    </nav>
+    </>
   )
-};
+}
 
-export default Navbar;
+export default Navbar

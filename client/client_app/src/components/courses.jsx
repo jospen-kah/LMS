@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Courses = () => {
     const [courses, setCourses] = useState([]);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios({
@@ -15,15 +15,14 @@ const Courses = () => {
         })
             .then(response => {
                 setCourses(response.data);
-                console.log("response: ", response.data)
             })
             .catch(error => {
                 console.error('There was an error fetching the courses!', error);
             });
-        }, []);
+    }, []);
 
     const handleCourseClick = (courseId) => {
-        navigate(`/courses/${courseId}`); 
+        navigate(`/courses/${courseId}`);
     };
 
     return (
@@ -44,11 +43,11 @@ const Courses = () => {
                             </div>
                             <p className='name'>{course.course_name}</p>
                             <p className='description'>{course.course_description}</p>
-                            <button 
-                            onClick={() => handleCourseClick(course._id)}
-                            className='enroll'>Get it Now</button>
+                            <button
+                                onClick={() => handleCourseClick(course._id)}
+                                className='enroll'>Get it Now</button>
                         </div>
-                        
+
                     </div>
                 ))}
             </div>

@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 const CourseDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -9,18 +8,19 @@ const CourseDetails = () => {
     const [isEnrolled, setIsEnrolled] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const token = localStorage.getItem("token");
+
 
     useEffect(() => {
-        if (!token) return;
 
         const fetchData = async () => {
+            const token = localStorage.getItem("token");
             try {
                 const response = await axios.get(`http://localhost:5000/courses/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+                // console.log(response.data.course)
                 setCourse(response.data.course);
                 setIsEnrolled(response.data.isEnrolled);
                 setLoading(false);
@@ -30,12 +30,22 @@ const CourseDetails = () => {
                 console.error(err);
             }
         };
-
         fetchData();
-    }, [id, token]);
-
+    }, [id]);
     const handleEnroll = async () => {
-        if (!token) {
+        const token = localStorage.getItem("token");
+        const storedUser = JSON.parse(localStorage.getItem("data.user"));
+        console.log("Stored user:", storedUser);
+        
+        if (!storedUser || !storedUser._id) {
+            console.error("User ID missing in localStorage!");
+            setError("User ID not found. Please log in again.");
+            return;
+        }
+        
+        const userId = storedUser?.user?._id; 
+        console.log("Enrolling User ID:", userId);
+        if (!userId) {
             navigate(`/login?redirect=/course/${id}`);
             return;
         }
@@ -46,10 +56,11 @@ const CourseDetails = () => {
 
         try {
             const response = await axios.put(
-                `http://localhost:5000/auth/update-enroll/${id}`,
+                `http://localhost:5000/auth/update-enroll/${userId}`,
                 { isEnrolled: true, courseId: id },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
+
             if (response.status === 200) {
                 setIsEnrolled(true);
                 navigate(`/portal`);
@@ -63,15 +74,14 @@ const CourseDetails = () => {
     if (loading) {
         return <p>Loading...</p>;
     }
-
     if (error) {
         return <p>{error}</p>;
     }
 
     return (
         <div className="coursedetails">
-            <h2>{course.name}</h2>
-            <p>{course.description}</p>
+            <h2>{course.course_name}</h2>
+            <p>{course.course_description}</p>
             <button onClick={handleEnroll}>
                 {isEnrolled ? "Go to Dashboard" : "Enroll in Course"}
             </button>

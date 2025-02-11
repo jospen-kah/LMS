@@ -1,0 +1,52 @@
+.home .content-1 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-1 .quotes {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quotes .quote-1 {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    height: 43px;
+    background-color: #F1F1F3;
+}
+
+.quote-1>span {
+    color: rgb(25 25 25);
+    padding-left: .2rem;
+}
+
+.quote-1 .zap {
+    background-color: #E5F0FF;
+    padding: .5rem;
+}
+
+.quotes .quote-2 {
+    margin-top: -1rem;
+    font-size: 25px;
+    font-weight: 10px;
+}
+
+.quotes .quote-3 {
+    margin-top: -2rem;
+    font-size: 20px;
+    font-weight: 10px;
+  }
+
+.quotes .explore {
+    background-color: rgb(25 25 25);
+    padding: 0 1rem;
+    border-radius: 5px;
+    color: #fff;
+  }
