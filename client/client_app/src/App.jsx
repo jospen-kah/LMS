@@ -1,16 +1,16 @@
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from "./pages/Home";
-import Community from "./pages/Community";
-import About from "./pages/About";
-import Login from "./pages/Login";
-import Register from "./pages/Registration";
-import WebsiteLayout from "./components/layout";
+import './App.css';
 import Footer from "./components/Footer";
 import Courses from "./components/courses";
-import Portal from './pages/Portal';
-import CourseDetails from './pages/CourseDetails';
+import WebsiteLayout from "./components/layout";
 import ProtectedRoute from "./components/protect"; // Import ProtectedRoute
+import About from "./pages/About";
+import Community from "./pages/community";
+import CourseDetails from './pages/CourseDetails';
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Portal from './pages/Portal';
+import Register from "./pages/Registration";
 
 const App = () => {
     window.onbeforeunload = function () {

@@ -1,6 +1,7 @@
 import Skills from '../components/skills';
 import Achievement from '../components/achievements';    
 import Goals  from '../components/goals';
+import './About.css'
 
 
 const About= () =>{

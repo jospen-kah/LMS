@@ -1,0 +1,137 @@
+.about {
+    padding: 1rem;
+}
+
+.about .skill {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid #E4E4E7;
+    padding: 0 .5rem;
+    border-radius: 5px;
+}
+
+.skill .h1 {
+    padding-top: .6rem;
+}
+
+.about .achievements {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievements .achievement-2 {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.achievement-2 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    border-radius: 5px;
+    background: #fff;
+    padding: 1rem;
+}
+
+.card .icon {
+    background-color: #00153323;
+    width: fit-content;
+    padding: .6rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .title {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1rem 0;
+}
+
+.about .goals{
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem;
+}
+
+.goals .goal-2{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.goal-2 .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    border-radius: 5px;
+    background: #fff;
+    padding: 1rem;
+}
+.goal-2 .card .icon{
+    background-color: #00153323;
+    width: fit-content;
+    padding: .6rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goal-2 .card .title{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1rem 0;
+}
+
+.goals .together{
+    margin-top: 4rem;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      background-color: #fff;
+}
+
+.together > span{
+    color: rgb(25 25 25)
+}
+
+.goals > button{
+    padding: .5rem;
+    border-radius: 5px;
+    font-size: large;
+    border: none;
+    background-color: rgb(25 25 25);
+    color: #fff;
+}
+
+@media screen and (max-width: 960px){
+    .about .skill{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 530px){
+    .about .achievements .achievement-2 {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+    .about .goals .goal-2{
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+}

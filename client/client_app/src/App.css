@@ -15,7 +15,6 @@ body {
 
 .content {
   margin-top: 2rem;
-  /* height: 100vh; */
 }
 
 
@@ -113,144 +112,12 @@ body {
 
 }
 
-.about {
 
-  padding: 3rem;
-
-  .skill {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border: 1px solid #E4E4E7;
-    padding: 0 .5rem;
-    border-radius: 5px;
-
-    h1 {
-      padding-top: .6rem;
-    }
-  }
-
-  .achievements {
-
-    display: flex;
-    flex-direction: column;
-
-    .achievement-2 {
-      margin-top: 2rem;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-
-      .card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: left;
-        width: 100%;
-        border-radius: 5px;
-        background: #fff;
-        padding: 1rem;
-
-        .icon {
-          background-color: #00153323;
-          width: fit-content;
-          padding: .6rem;
-          border-radius: 5px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .title {
-          font-weight: bold;
-          font-size: 20px;
-          padding: 1rem 0;
-        }
-
-      }
-    }
-
-  }
-
-  .goals {
-
-    display: flex;
-    flex-direction: column;
-    margin-top: 8rem;
-
-    .goal-2 {
-      margin-top: 2rem;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-
-      .card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: left;
-        width: 100%;
-        border-radius: 5px;
-        background: #fff;
-        padding: 1rem;
-
-        .icon {
-          background-color: #00153323;
-          width: fit-content;
-          padding: .6rem;
-          border-radius: 5px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .title {
-          font-weight: bold;
-          font-size: 20px;
-          padding: 1rem 0;
-        }
-
-      }
-    }
-
-    .together {
-      margin-top: 4rem;
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 5px;
-      background-color: #fff;
-
-      span {
-        color: rgb(25 25 25);
-      }
-    }
-
-    button {
-      padding: .5rem;
-      border-radius: 5px;
-      font-size: large;
-      border: none;
-      background-color: rgb(25 25 25);
-      color: #fff;
-    }
-
-  }
-
-}
 
 .coursedetails {
   margin-top: 10rem;
   border: 1px solid #000;
 }
 
-/* Mobile view */
-/* @media (max-width: 480px) {
-  /* .content {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  } */
+
 
