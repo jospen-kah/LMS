@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../components/Auth"; // Import AuthContext
+
 const CourseDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -9,20 +11,25 @@ const CourseDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Access user context from AuthContext
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
-
         const fetchData = async () => {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token"); // Get token from localStorage
+            if (!token) {
+                setError('No authentication token found. Please log in.');
+                setLoading(false);
+                return;
+            }
+
             try {
                 const response = await axios.get(`http://localhost:5000/courses/${id}`, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`, // Send token in Authorization header
                     },
                 });
-                // console.log(response.data.course)
                 setCourse(response.data.course);
-                setIsEnrolled(response.data.isEnrolled);
                 setLoading(false);
             } catch (err) {
                 setError('Failed to fetch course details.');
@@ -32,38 +39,29 @@ const CourseDetails = () => {
         };
         fetchData();
     }, [id]);
+
     const handleEnroll = async () => {
-        const token = localStorage.getItem("token");
-        const storedUser = JSON.parse(localStorage.getItem("data.user"));
-        console.log("Stored user:", storedUser);
-        
-        if (!storedUser || !storedUser._id) {
-            console.error("User ID missing in localStorage!");
-            setError("User ID not found. Please log in again.");
-            return;
-        }
-        
-        const userId = storedUser?.user?._id; 
-        console.log("Enrolling User ID:", userId);
-        if (!userId) {
+        if (!user?._id) {
             navigate(`/login?redirect=/course/${id}`);
-            return;
-        }
-        if (isEnrolled) {
-            navigate(`/portal`);
             return;
         }
 
         try {
+            const token = localStorage.getItem("token"); // Get token from localStorage
+            if (!token) {
+                setError('No authentication token found. Please log in.');
+                return;
+            }
+
             const response = await axios.put(
-                `http://localhost:5000/auth/update-enroll/${userId}`,
-                { isEnrolled: true, courseId: id },
-                { headers: { Authorization: `Bearer ${token}` } }
+                `http://localhost:5000/auth/update-enroll/${user._id}`,
+                { courseId: id },
+                { headers: { Authorization: `Bearer ${token}` } } 
             );
 
             if (response.status === 200) {
-                setIsEnrolled(true);
-                navigate(`/portal`);
+                setIsEnrolled(true); 
+                navigate(`/portal`); 
             }
         } catch (error) {
             setError(error.response?.data?.message || error.message);
