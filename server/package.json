@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "build": "echo 'No build step required for Express'",
     "type": "CommonJs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

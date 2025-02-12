@@ -1,5 +1,5 @@
 const User = require('../../Models/UserModel');
-const Course = require('../../Models/CourseModel');
+const courses = require('../../Models/CourseModel');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const Student = require('../../Models/StudentSchema');
@@ -34,8 +34,6 @@ async function authRegisterController(req, res) {
 }
 
 
-
-
 async function authLoginController(req, res) {
     try {
         const { email, password } = req.body;
@@ -54,26 +52,22 @@ async function authLoginController(req, res) {
 
         // Generate Token
         const token = jwt.sign(
-            { id: user._id, email: user.email },
+            { id: user._id, 
+              email: user.email,
+            enrolledCourses: user.enrolledCourses,
+            isFirstLogin: user.isFirstLogin
+            },
             key,
             { expiresIn: "1h" }
         );
 
-        // ✅ Corrected: Ensure properties are accessed on `user` not `User`
-        const responseData = {
-            message: "Login Successful",
-            token,
-            isFirstLogin: user.isFirstLogin,  
-            isEnrolled: user.isEnrolled,
-            course: user.course || null, // Send course ID if enrolled
-        };
 
-        res.status(200).json(responseData); // ✅ First and only response
+        res.status(200).json({token}); 
 
-        // ✅ Update first login status **without affecting response**
+        // Update first login status **without affecting response**
         if (user.isFirstLogin) {
-            user.isFirstLogin = false; // ✅ Fix: Modify user instance
-            await user.save(); // ✅ Corrected from `User.save()`
+            user.isFirstLogin = false; 
+            await user.save(); 
         }
     } catch (err) {
         console.error(err);
@@ -83,30 +77,47 @@ async function authLoginController(req, res) {
     }
 }
 
-async function updateStudentEnrollment (req, res){
+async function updateStudentEnrollment(req, res) {
     try {
-        const { userId } = req.user; // Extract user ID from authenticated user (assumed to be in JWT token)
-        const { isEnrolled } = req.body;
+        const { id: userId } = req.params;  
+        const { courseId } = req.body; 
+         
 
-        // Find the student
-        const student = await Student.findById(userId);
+        // const enroll = await courses.findById(courseId)
+        const course= await courses.findById({_id:courseId})
+
+        if(!course){
+            return res.status(404).json({message:'not found'})
+        }
+
+        
+        
+        // if (!enroll) {
+        //     return res.status(400).json({ message: "Course ID is required" });
+        // }
+
+        const student = await Student.findById(userId).populate('enrolledCourses');  
         if (!student) {
             return res.status(404).json({ message: "Student not found" });
         }
 
-        // Update enrollment status
-        student.isEnrolled = isEnrolled ?? student.isEnrolled;
+    
+        if (!student.enrolledCourses.includes(courseId)) {
+            student.enrolledCourses.push(courseId);  
+        }
 
-        // If it's the first login, set `isFirstLogin` to false
+        
         if (student.isFirstLogin) {
             student.isFirstLogin = false;
         }
 
+        // Save the updated student data
         await student.save();
 
+        // Return success message with the updated enrolledCourses array
         return res.status(200).json({
-            message: "Student updated successfully",
-            isEnrolled: student.isEnrolled,
+            message: "Student enrolled successfully",
+            enrolledCourses: student.enrolledCourses, // Return updated courses array
             isFirstLogin: student.isFirstLogin
         });
 
@@ -114,6 +125,9 @@ async function updateStudentEnrollment (req, res){
         console.error("Error updating student:", error);
         return res.status(500).json({ message: "Server error", error: error.message });
     }
-};
+}
+
+
+
 
 module.exports = { authRegisterController, authLoginController, updateStudentEnrollment };

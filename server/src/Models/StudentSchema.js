@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const StudentSchema = new Schema({
     isFirstLogin: { type: Boolean, default: true},
-    isEnrolled: {type: Boolean, default: false},
+    enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
 
 });
 
