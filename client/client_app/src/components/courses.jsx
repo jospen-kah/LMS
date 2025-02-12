@@ -28,12 +28,9 @@ const Courses = () => {
     return (
         <div className='content-3'>
             <h1>Our Courses</h1>
-            <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt
-                etiam eget elit id imperdiet et. Cras eu sit dignissim lorem
-                nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.
-            </p>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
 
-            <div>
+            <div className='course-box'>
 
                 {courses.map((course, index) => (
                     <div key={index} className="course-card">
@@ -45,7 +42,7 @@ const Courses = () => {
                             <p className='description'>{course.course_description}</p>
                             <button
                                 onClick={() => handleCourseClick(course._id)}
-                                className='enroll'>Get it Now</button>
+                                className='enroll'><p>Get it Now</p></button>
                         </div>
 
                     </div>

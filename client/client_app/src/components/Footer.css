@@ -100,6 +100,17 @@ footer {
 }
 .social > p{
     font-weight: bold;
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+
+}
+
+.footer-container .footer-end{
+    background-color: #000;
+    color: #fff;
+    /* padding: .2rem 0; */
 }
 
 
@@ -119,5 +130,11 @@ footer {
         flex-direction: column;
         justify-content: center;
         align-items: start;
+    }
+
+    .social > p{
+        font-size: 10px;
+        color: #fff;
+        padding: .7rem;
     }
 }

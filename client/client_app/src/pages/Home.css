@@ -131,15 +131,17 @@ a .explore {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    
+}
+.content-3 > p{
+padding:0 3rem;
 }
 
-.content-3 .course-card {
-    width: 90%;
+.content-3 .course-box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    margin-top: 2rem;
-    margin-left: 4rem;
+    padding: 2rem;
 }
 
 .course-card .course-details {
@@ -155,7 +157,6 @@ a .explore {
 }
 
 .course-details .picture {
-    height: 240px;
     background-color: rgb(90, 87, 87);
     background-origin: padding-box;
     border-radius: 5px;
@@ -168,7 +169,8 @@ a .explore {
     height: auto;
 }
 
-.course-details>button {
+.course-details > button {
+    position: relative;
     background-color: #F7F7F8;
     padding: .5rem;
     border-radius: 5px;
@@ -180,13 +182,41 @@ a .explore {
     height: 50px;
     font-size: 15px;
     cursor: pointer;
+    overflow: hidden;
+    transition: color 0.4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.course-details>button {
-    background-color: rgb(25 25 25);
-    color: #fff;
-    transition-duration: 300ms;
+.course-details > button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Black background */
+    transition: left 0.4s ease-in-out;
+    z-index: 0;
 }
+
+.course-details > button:hover::before {
+    left: 0;
+}
+
+.course-details > button > p{
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s ease-in-out;
+}
+
+.course-details > button:hover > p {
+    color: #fff; /* Text turns white */
+}
+
+
+
 
 .content-4 {
     display: flex;
@@ -294,15 +324,14 @@ a .explore {
     .content-3 > h1{
         font-size: 25px;
     }
-    .content-3 .course-card {
-        width: 90%;
+    .content-3 .course-box {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1rem;
-        margin-top: 2rem;
-        margin-left: 4rem;
+        grid-template-columns: repeat(2, 1fr);
     }
-
+    .course-details .description{
+        display: none;
+    }
+    
     /* Testimonial */
     .content-4 > h1{
         font-size: 25px;
@@ -349,6 +378,9 @@ a .explore {
     }
 
     /* benefits */
+    .benefits > p{
+        font-size: 10px;
+    }
     .content-2 .benefits-list {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -375,10 +407,39 @@ a .explore {
     .content-3 > h1{
         font-size: 20px;
     }
+    .content-3 > p{
+       font-size: 10px;
+
+    }
+    .content-3 .course-box{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .course-details .description{
+        display: none;
+    }
+    .course-details .name{
+        font-size: 15px;
+    }
+    .course-details > button{
+        font-size: 13px;
+        height: 30px;
+    }
 
     /* testimonial */
+
     .content-4 > h1{
         font-size: 20px;
+    }
+     .card .quote > p, button{
+        font-size: 10px;
+    }
+
+    .card .info .author > p{
+        font-size: 12px;
+    }
+    .card .info .author > img{
+        width: 20px;
     }
 
 }
