@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import { X , Menu} from 'lucide-react';
-import { Button } from './button';
+import  Button  from './button';
 import './Navbar.css'
 
 function Navbar() {
