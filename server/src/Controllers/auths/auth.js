@@ -62,7 +62,14 @@ async function authLoginController(req, res) {
         );
 
 
-        res.status(200).json({token}); 
+        res.status(200).json({
+            token,
+            user: {
+                id: user._id,
+                email: user.email,
+                username: user.username,
+                enrolledCourses: user.enrolledCourses,  // Add enrolled courses if needed
+            }}); 
 
         // Update first login status **without affecting response**
         if (user.isFirstLogin) {
