@@ -72,7 +72,7 @@ const Registration = () => {
                             required name="password" placeholder="Enter your password"/>
                          <div className="recall">
                             <div className="remember">
-                                <input type="radio"/>
+                                <input type="checkbox"/>
                                 <p>Remember Me</p>
                             </div>
 

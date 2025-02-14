@@ -52,11 +52,11 @@ const Login = () => {
                                 <input type="checkbox" />
                                 <p>Remember Me</p>
                             </div>
-                            <nav>
+                            <div className='forgot'>
                                 <Link to="/">
                                     <p className="forgotten">Forgot Password?</p>
                                 </Link>
-                            </nav>
+                            </div>
                         </div>
 
                         {error && <p className="error-message">{error}</p>} 
