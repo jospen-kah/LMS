@@ -10,6 +10,7 @@ const CourseDetails = () => {
     const [isEnrolled, setIsEnrolled] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    
 
     // Access user context from AuthContext
     const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const CourseDetails = () => {
         const fetchData = async () => {
             const token = localStorage.getItem("token"); // Get token from localStorage
             if (!token) {
-                setError('No authentication token found. Please log in.');
+                setError(` ${navigate('/register')}`);
                 setLoading(false);
                 return;
             }
@@ -34,40 +35,46 @@ const CourseDetails = () => {
             } catch (err) {
                 setError('Failed to fetch course details.');
                 setLoading(false);
-                console.error(err);
+                
             }
         };
         fetchData();
     }, [id]);
 
     const handleEnroll = async () => {
-        if (!user?._id) {
+        const userData = JSON.parse(localStorage.getItem("user"));
+        if (!userData.id) {
+            
             navigate(`/login?redirect=/course/${id}`);
             return;
         }
-
+    
         try {
-            const token = localStorage.getItem("token"); // Get token from localStorage
+            const token = localStorage.getItem("token"); 
             if (!token) {
-                setError('No authentication token found. Please log in.');
+                setError('No authentication.');
                 return;
             }
-
+    
+            // Ensure user._id is correctly passed to the backend
+            console.log("User ID:", userData.id); 
+    
             const response = await axios.put(
-                `http://localhost:5000/auth/update-enroll/${user._id}`,
+                `http://localhost:5000/auth/update-enroll/${userData.id}`, 
                 { courseId: id },
-                { headers: { Authorization: `Bearer ${token}` } } 
+                { headers: { Authorization: `Bearer ${token}` } }
             );
-
+    
             if (response.status === 200) {
-                setIsEnrolled(true); 
-                navigate(`/portal`); 
+                setIsEnrolled(true);
+                navigate(`/portal/${userData.id}`);
             }
         } catch (error) {
             setError(error.response?.data?.message || error.message);
-            console.error(error);
+            console.error("Enrollment error:", error);
         }
     };
+    
 
     if (loading) {
         return <p>Loading...</p>;
@@ -88,3 +95,4 @@ const CourseDetails = () => {
 };
 
 export default CourseDetails;
+

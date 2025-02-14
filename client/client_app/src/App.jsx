@@ -12,6 +12,7 @@ import Portal from './pages/Portal';
 import Register from "./pages/Registration";
 import ProtectedRoutes from './Utils/ProtectedRoutes';
 import { AuthProvider } from './components/Auth';  // Import the AuthProvider
+import Any from './components/any';
 
 const App = () => {
     window.onbeforeunload = function () {
@@ -20,22 +21,22 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <AuthProvider> {/* Wrap the app in AuthProvider */}
+            <AuthProvider> 
                 <Routes>
                     <Route element={<WebsiteLayout />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/community" element={<Community />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/all-courses" element={<Courses />} />
+                        <Route path="/courses" element={<Courses />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/courses/:id" element={<CourseDetails />} />
+                        <Route path="/any" element={<Any />} />
+                        <Route path="/portal/:id" element={<Portal />} />
+
                     </Route>
 
-                    {/* PROTECTED ROUTE */}
-                    <Route element={<ProtectedRoutes />}>
-                        <Route path="/portal" element={<Portal />} />
-                    </Route>
+
                 </Routes>
                 <Footer />
             </AuthProvider>

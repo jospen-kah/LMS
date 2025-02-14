@@ -6,11 +6,11 @@ import './About.css'
 
 const About= () =>{
     return(
-        <diV className="about">
+        <div className="about">
             <Skills />
             <Achievement  />
             <Goals />
-        </diV>
+        </div>
     )
 }
 

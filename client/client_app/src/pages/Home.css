@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 }
 
 .quotes .quote-1 {
@@ -19,16 +20,23 @@
     font-size: 20px;
     height: 43px;
     background-color: #F1F1F3;
+    padding: 2rem 0;
 }
+
+
 
 .quote-1>span {
     color: rgb(25 25 25);
     padding-left: .2rem;
 }
+.quote-1 > h2{
+    padding-left: .5rem;
+}
 
 .quote-1 .zap {
     background-color: #E5F0FF;
-    padding: .5rem;
+
+
 }
 
 .quotes .quote-2 {
@@ -41,6 +49,7 @@
     margin-top: -2rem;
     font-size: 20px;
     font-weight: 10px;
+    padding: 2rem 0;
 }
 
 .quotes>a {
@@ -49,7 +58,7 @@
 
 a .explore {
     background-color: rgb(25 25 25);
-    padding: .2rem;
+    padding: .7rem;
     padding-left: 2rem;
     padding-right: 2rem;
     border-radius: 5px;
@@ -352,7 +361,7 @@ padding:0 3rem;
     }
 
     .quote-1>h2 {
-        padding: 0 1rem;
+        padding: 0 0.1rem;
     }
 
     .quotes .quote-2 {
@@ -365,7 +374,7 @@ padding:0 3rem;
     }
 
     a .explore {
-        padding: .1rem;
+        padding: .3rem;
         padding-left: 1rem;
         padding-right: 1rem;
         border-radius: 5px;

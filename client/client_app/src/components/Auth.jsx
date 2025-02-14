@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";  
@@ -12,13 +13,17 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token) {
+        const storedUser = localStorage.getItem("user");
+
+        if (token && storedUser) {
             try {
-                const decodedUser = jwtDecode(token);
+                // Parse user data from localStorage
+                const decodedUser = JSON.parse(storedUser);
                 setUser(decodedUser);
             } catch (error) {
-                console.error("Invalid token:", error);
+                console.error("Invalid user data in localStorage:", error);
                 localStorage.removeItem("token");
+                localStorage.removeItem("user");
                 setUser(null);
             }
         }
@@ -37,20 +42,24 @@ export const AuthProvider = ({ children }) => {
                 }
             );
 
-            //  Extract token correctly
-            const { token } = response.data;
+            // Extract token and user from the response
+            const { token, user: userData } = response.data;
+            console.log("token: ", token, "userData: ",userData)
+            // if (!token || !userData) throw new Error("Login failed: No token or user data received");
 
-            if (!token) throw new Error("Login failed: No token received");
-
+            // Store token and user in localStorage
             localStorage.setItem("token", token);
-            const decodedUser = jwtDecode(token);
-            setUser(decodedUser);
+            localStorage.setItem("user", JSON.stringify(userData));
+
+            
+            const decodedUser = jwtDecode(token); 
+            setUser(userData); 
 
             // Redirect based on enrolled courses
-            if (decodedUser.enrolledCourses?.length > 0) {
-                navigate("/portal");
+            if (userData.enrolledCourses?.length > 0) {
+                navigate(`/portal/${userData.id}`);
             } else {
-                navigate("/all-courses");
+                navigate("/courses");
             }
         } catch (error) {
             console.error('Login error:', error);
@@ -60,6 +69,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         setUser(null);
         navigate("/login");
     };

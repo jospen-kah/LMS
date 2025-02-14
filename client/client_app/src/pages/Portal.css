@@ -1,0 +1,60 @@
+.loading{
+    height: 100vh;
+}
+.courses-portal{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.portal{
+    display: flex;
+    flex-direction: column;
+}
+.portal .welcome{
+    padding: 0 4rem;
+}
+.portal .course-heading{
+    padding: .5rem 4rem;
+}
+
+.enrollment{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    justify-content: center;
+}
+.enrollment .enroll-content{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    
+}
+.content > p{
+    padding: 1rem 0;
+}
+
+.enroll-img > img{
+    border-radius: 5px;
+}
+.enroll-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.start{
+    display: flex;
+    justify-content: end;
+
+}
+.start > button {
+    background-color: #242424;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: .5rem;
+    border: none;
+    cursor: pointer;
+    
+}

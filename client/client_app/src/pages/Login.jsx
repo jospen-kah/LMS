@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
-import AuthContext from "../components/Auth"; // ✅ Ensure correct import
+import AuthContext from "../components/Auth";
 
 const Login = () => {
-    const { login } = useContext(AuthContext); // ✅ Ensure AuthProvider wraps App
+    const { login } = useContext(AuthContext); 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");

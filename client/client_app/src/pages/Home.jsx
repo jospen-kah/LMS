@@ -15,7 +15,7 @@ const Home = () => {
             <div className=" content-1">
                 <div className="quotes">
                     <div className="quote-1">
-                        <Zap fill size={20} color="#000" className="zap" />
+                        <Zap fill="currentColor" size={25} color="#000" className="zap" />
                         <h2><span>Unlock</span> Your Creative Potential</h2>
                     </div>
                     <div className="quote-2">
@@ -25,7 +25,7 @@ const Home = () => {
                         <p>Learning from industry expert</p>
                     </div>
                     
-                        <Link to="/all-courses">
+                        <Link to="/courses">
                         <div className="explore">
                             <p>Explore Courses</p>
                         </div>
