@@ -128,11 +128,11 @@
       display: table;
     }
   
-    .nav-item:hover {
+    /* .nav-item:hover {
       background-color:rgb(86, 83, 83);
       color: #000;
       border-radius: 5px;
-    }
+    } */
   
     .logo-content .navbar-logo {
       font-size: 1.5rem;

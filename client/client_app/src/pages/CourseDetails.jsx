@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../components/Auth"; // Import AuthContext
+import Courses from "../components/courses";
 
 const CourseDetails = () => {
     const { id } = useParams();
@@ -10,10 +11,8 @@ const CourseDetails = () => {
     const [isEnrolled, setIsEnrolled] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
 
-    // Access user context from AuthContext
-    const { user } = useContext(AuthContext);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,10 +31,12 @@ const CourseDetails = () => {
                 });
                 setCourse(response.data.course);
                 setLoading(false);
+
+                localStorage.setItem("courseId",id)
             } catch (err) {
                 setError('Failed to fetch course details.');
                 setLoading(false);
-                
+
             }
         };
         fetchData();
@@ -44,27 +45,27 @@ const CourseDetails = () => {
     const handleEnroll = async () => {
         const userData = JSON.parse(localStorage.getItem("user"));
         if (!userData.id) {
-            
+
             navigate(`/login?redirect=/course/${id}`);
             return;
         }
-    
+
         try {
-            const token = localStorage.getItem("token"); 
+            const token = localStorage.getItem("token");
             if (!token) {
                 setError('No authentication.');
                 return;
             }
-    
+
             // Ensure user._id is correctly passed to the backend
-            console.log("User ID:", userData.id); 
-    
+            console.log("User ID:", userData.id);
+
             const response = await axios.put(
-                `http://localhost:5000/auth/update-enroll/${userData.id}`, 
+                `http://localhost:5000/auth/update-enroll/${userData.id}`,
                 { courseId: id },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-    
+
             if (response.status === 200) {
                 setIsEnrolled(true);
                 navigate(`/portal/${userData.id}`);
@@ -74,7 +75,7 @@ const CourseDetails = () => {
             console.error("Enrollment error:", error);
         }
     };
-    
+
 
     if (loading) {
         return <p>Loading...</p>;
@@ -84,12 +85,18 @@ const CourseDetails = () => {
     }
 
     return (
-        <div className="coursedetails">
-            <h2>{course.course_name}</h2>
-            <p>{course.course_description}</p>
-            <button onClick={handleEnroll}>
-                {isEnrolled ? "Go to Dashboard" : "Enroll in Course"}
-            </button>
+        <div>
+
+            <div className="coursedetails">
+                <h2>{course.course_name}</h2>
+                <p>{course.course_description}</p>
+                <button onClick={handleEnroll}>
+                    {isEnrolled ? "Go to Dashboard" : "Enroll in Course"}
+                </button>
+            </div>
+            <div>
+                <Courses/>
+            </div>
         </div>
     );
 };

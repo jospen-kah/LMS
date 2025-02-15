@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router";
+import { useNavigate, Link, useParams } from "react-router";
 import axios from "axios";
 import ProtectedRoute from '../Utils/ProtectedRoutes';
 import Courses from '../components/courses';
@@ -9,6 +9,8 @@ function Portal() {
     const { id } = useParams();
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
 
 
@@ -20,7 +22,6 @@ function Portal() {
                 });
                 setUser(response.data.user);
                 setLoading(false);
-                console.log("data: ", response.data)
             } catch (error) {
                 console.error("Error fetching portal data: ", error);
                 setLoading(false);
@@ -48,9 +49,13 @@ function Portal() {
                                 <div className='content'>
                                     <h3>{course.course_title}</h3>
                                     <p>{course.course_description}</p>
+                                    <p>{course.course_.id}</p>
+                                    <p>{id}</p>
                                 </div>
                                 <div className='start'>
-                                  <button>Start Course</button>
+                                    <Link to={`/dashboard/${id}`}>
+                                        <button>Start Course</button>
+                                    </Link>
                                 </div>
 
                             </div>

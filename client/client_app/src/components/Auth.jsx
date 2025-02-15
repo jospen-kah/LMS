@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
             // Extract token and user from the response
             const { token, user: userData } = response.data;
-            console.log("token: ", token, "userData: ",userData)
+            
             // if (!token || !userData) throw new Error("Login failed: No token or user data received");
 
             // Store token and user in localStorage
