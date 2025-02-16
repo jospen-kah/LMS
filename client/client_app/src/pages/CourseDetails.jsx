@@ -49,6 +49,7 @@ const CourseDetails = () => {
             navigate(`/login?redirect=/course/${id}`);
             return;
         }
+        
 
         try {
             const token = localStorage.getItem("token");
@@ -60,12 +61,18 @@ const CourseDetails = () => {
             // Ensure user._id is correctly passed to the backend
             console.log("User ID:", userData.id);
 
+            if (userData.enrolledCourses && userData.enrolledCourses.includes(id)) {
+                setError("You are already enrolled in this course.");
+                navigate(`/dashboard/${id}`);
+                return;
+            }
+
             const response = await axios.put(
                 `http://localhost:5000/auth/update-enroll/${userData.id}`,
                 { courseId: id },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-
+            
             if (response.status === 200) {
                 setIsEnrolled(true);
                 navigate(`/portal/${userData.id}`);

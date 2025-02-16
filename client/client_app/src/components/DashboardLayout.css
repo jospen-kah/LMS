@@ -1,0 +1,6 @@
+.dashboard-content{
+    border: 1px solid red;
+    margin-left: 21%;
+    min-height: 100vh;
+    padding: 1rem;
+}

@@ -1,0 +1,61 @@
+.dashnav {
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-right: .1rem;
+    background-color: #242424;
+    color: #fff;
+    overflow-y: 1; /* Enables vertical scrolling */
+    overflow-x: hidden;
+    scrollbar-width: thin; /* Makes scrollbar smaller (for Firefox) */
+    scrollbar-color: #888 #2c3e50; /* Custom scrollbar color */
+}
+
+.dashnav .nav-head{
+    padding: 1rem ;
+    border-bottom: 1px solid #888;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashnav .dash-links{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.dash-links .links{
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    
+}
+.links .dash-link{
+    color: #fff;
+    text-decoration: none;
+    padding-left: .5rem;
+    padding-bottom: 1rem;
+}
+
+.dashnav .nav-profile{
+    position: fixed;     
+    display: flex;
+    left: 0;
+    bottom: 0;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border: 1px solid #888;
+    padding: 1rem;
+    width: 19.9%;
+    font-size: 20px;
+    
+    /* background-color: #fff; */
+}
+
+.nav-profile > p{
+    padding-left: .5rem;
+}
+

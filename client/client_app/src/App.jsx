@@ -9,8 +9,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Portal from './pages/Portal';
 import Register from "./pages/Registration";
-import { AuthProvider } from './components/Auth';  
+import { AuthProvider } from './components/Auth';
 import Dashboard from './pages/Dashboard';
+import DashboardLayout from './components/DashboardLayout';
 
 const App = () => {
     window.onbeforeunload = function () {
@@ -19,7 +20,7 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <AuthProvider> 
+            <AuthProvider>
                 <Routes>
                     <Route element={<WebsiteLayout />}>
                         <Route path="/" element={<Home />} />
@@ -29,13 +30,14 @@ const App = () => {
                         <Route path="/register" element={<Register />} />
                         <Route path="/courses/:id" element={<CourseDetails />} />
                         <Route path="/portal/:id" element={<Portal />} />
-                        <Route path="/dashboard/:courseId" element={<Dashboard/>} />
 
                     </Route>
 
+                    <Route element={<DashboardLayout />}>
+                        <Route path="/dashboard/:courseId" element={<Dashboard />} />
+                    </Route>
 
                 </Routes>
-                <Footer />
             </AuthProvider>
         </BrowserRouter>
     );

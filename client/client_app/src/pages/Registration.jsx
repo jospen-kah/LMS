@@ -1,4 +1,4 @@
-import { useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 const Registration = () => {
@@ -52,7 +52,7 @@ const Registration = () => {
         <div className="main-login">
             <div className="info">
                 <div className='head'>
-                    <h1>Sign up</h1>
+                    <h1>Sign Up</h1>
                     <p>Create an Account to unlock exclusive features!</p>
                 </div>
                 <div className="details">
@@ -83,7 +83,11 @@ const Registration = () => {
                         {message && <p className='error'>{message}</p>}
 
                     </form>
+                    
                 </div>
+                <p> Already have an Account? 
+                    <Link to ='/login'>Sign in</Link>
+                </p>
             </div>
         </div>
 

@@ -61,6 +61,7 @@ body {
       p {
         size: 20px;
         font-weight: bold;
+        padding: 1rem 0;
 
       }
 
@@ -114,12 +115,13 @@ body {
           align-items: center;
 
           p{
-            padding-left: .1rem;
+            padding-left: .5rem;
           }
 
 
           input {
             width: 20px;
+            
           }
 
         }

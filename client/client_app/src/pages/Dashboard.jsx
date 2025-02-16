@@ -7,12 +7,14 @@ const Dashboard = () => {
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const {courseId }= useParams();
+    const courseId = localStorage.getItem("courseId")
+    
 
 
     useEffect(() => {
         const fetchCourse = async () => {
             try {
+                
                 const response = await axios.get(`http://localhost:5000/courses/${courseId}`);
                 console.log("data:", response.data);
                 setCourse(response.data.course);
@@ -41,6 +43,7 @@ return (
     <ProtectedRoute>
 
         <div className="coursedetails">
+            
             <h1>Dashboard</h1>
             <h2>{course.course_name}</h2>
             <p>{course.course_description}</p>
