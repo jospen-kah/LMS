@@ -4,7 +4,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding-right: .1rem;
     background-color: #242424;
     color: #fff;
     overflow-y: 1; /* Enables vertical scrolling */
@@ -36,7 +35,8 @@
 .links .dash-link{
     color: #fff;
     text-decoration: none;
-    padding-left: .5rem;
+    padding-left: 1rem;
+    padding-right: .5rem;
     padding-bottom: 1rem;
 }
 
@@ -46,7 +46,8 @@
     left: 0;
     bottom: 0;
     align-items: center;
-    border-top-right-radius: 5px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
     border: 1px solid #888;
     padding: 1rem;
     width: 19.9%;
@@ -58,4 +59,3 @@
 .nav-profile > p{
     padding-left: .5rem;
 }
-

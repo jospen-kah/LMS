@@ -1,0 +1,39 @@
+.progress{
+    display: flex;
+    flex-direction: column;
+    padding:1rem;
+}
+.progress .progress-percentage{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+.progress .progress-bar-container{
+    border: 1px solid #fff;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+    border-radius: 5px;
+}
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.greenish-yellow {
+    background-color: #c0e45a; /* Greenish Yellow */
+}
+
+.green {
+    background-color: green;
+}
+
