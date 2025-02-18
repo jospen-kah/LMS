@@ -16,7 +16,7 @@ const Dashboard = () => {
             try {
                 
                 const response = await axios.get(`http://localhost:5000/courses/${courseId}`);
-                console.log("data:", response.data);
+                // console.log("data:", response.data);
                 setCourse(response.data.course);
                 setLoading(false);
             }

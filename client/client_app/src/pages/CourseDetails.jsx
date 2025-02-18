@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../components/Auth"; // Import AuthContext
 import Courses from "../components/courses";
+import './CourseDetail.css';
 
 const CourseDetails = () => {
     const { id } = useParams();
@@ -32,7 +33,7 @@ const CourseDetails = () => {
                 setCourse(response.data.course);
                 setLoading(false);
 
-                localStorage.setItem("courseId",id)
+                localStorage.setItem("courseId", id)
             } catch (err) {
                 setError('Failed to fetch course details.');
                 setLoading(false);
@@ -49,7 +50,7 @@ const CourseDetails = () => {
             navigate(`/login?redirect=/course/${id}`);
             return;
         }
-        
+
 
         try {
             const token = localStorage.getItem("token");
@@ -72,7 +73,7 @@ const CourseDetails = () => {
                 { courseId: id },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-            
+
             if (response.status === 200) {
                 setIsEnrolled(true);
                 navigate(`/portal/${userData.id}`);
@@ -92,18 +93,21 @@ const CourseDetails = () => {
     }
 
     return (
-        <div>
+        <div className="course-box">
 
-            <div className="coursedetails">
-                <h2>{course.course_name}</h2>
-                <p>{course.course_description}</p>
-                <button onClick={handleEnroll}>
-                    {isEnrolled ? "Go to Dashboard" : "Enroll in Course"}
-                </button>
+            <div className="course-detail">
+                <div className="course-content">
+                    <h2>{course.course_name}</h2>
+                    <p>{course.course_description}</p>
+                </div>
+                <div className="enroll-button">
+                    <button onClick={handleEnroll}>
+                        {isEnrolled ? "Go to Dashboard" : "Enroll in Course"}
+                    </button>
+                </div>
             </div>
-            <div>
-                <Courses/>
-            </div>
+            <Courses />
+
         </div>
     );
 };

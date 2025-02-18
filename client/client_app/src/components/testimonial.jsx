@@ -8,7 +8,7 @@ const Testimonial = () => {
     ]
 
     return (
-        <div className="content-4">
+        <div id="testimonial" className="content-4">
             <h1>Testimonial</h1>
 
             <div className="content-card">

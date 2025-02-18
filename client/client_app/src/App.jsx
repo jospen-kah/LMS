@@ -12,6 +12,9 @@ import Register from "./pages/Registration";
 import { AuthProvider } from './components/Auth';
 import Dashboard from './pages/Dashboard';
 import DashboardLayout from './components/DashboardLayout';
+import Profile from './pages/profile';
+
+
 
 const App = () => {
     window.onbeforeunload = function () {
@@ -35,6 +38,7 @@ const App = () => {
 
                     <Route element={<DashboardLayout />}>
                         <Route path="/dashboard/:courseId" element={<Dashboard />} />
+                        <Route path="/dashboard/user/profile" element={<Profile />} />
                     </Route>
 
                 </Routes>
