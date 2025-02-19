@@ -86,53 +86,60 @@ async function authLoginController(req, res) {
 
 async function updateStudentEnrollment(req, res) {
     try {
-        const { id: userId } = req.params;  
-        const { courseId } = req.body; 
-         
+        const { id: userId } = req.params;  // Student ID from URL params
+        const { courseId } = req.body;  // Course ID from request body
 
-        // const enroll = await courses.findById(courseId)
-        const course= await courses.findById({_id:courseId})
-
-        if(!course){
-            return res.status(404).json({message:'not found'})
+        // Find the course by ID
+        const course = await courses.findById(courseId);
+        if (!course) {
+            return res.status(404).json({ message: 'Course not found' });
         }
 
-        
-        
-        // if (!enroll) {
-        //     return res.status(400).json({ message: "Course ID is required" });
-        // }
-
+        // Find the student and populate enrolledCourses
         const student = await Student.findById(userId).populate('enrolledCourses');  
         if (!student) {
             return res.status(404).json({ message: "Student not found" });
         }
 
-    
-        if (!student.enrolledCourses.includes(courseId)) {
-            student.enrolledCourses.push(courseId);  
-        }
+        
+        const isEnrolled = student.enrolledCourses.some(
+            (enrolledCourse) => enrolledCourse._id.toString() === courseId
+        );
+
+        // if (student.enrolledCourses.includes(courseId)) {
+        //     return res.status(409).json({ message: "Student already enrolled in this course" });
+        // }
 
         
+        student.enrolledCourses.push(courseId);
+
+        
+        // if (!course.studentsEnrolled.includes(userId)) {
+        //     course.studentsEnrolled.push(userId);
+        // }
+
+        // Set first login flag if needed
         if (student.isFirstLogin) {
             student.isFirstLogin = false;
         }
 
-        // Save the updated student data
+        // Save updates
         await student.save();
+        await course.save();
 
-        // Return success message with the updated enrolledCourses array
         return res.status(200).json({
             message: "Student enrolled successfully",
-            enrolledCourses: student.enrolledCourses, // Return updated courses array
+            enrolledCourses: student.enrolledCourses,
+            studentsEnrolled: course.studentsEnrolled, // Return updated students array
             isFirstLogin: student.isFirstLogin
         });
 
     } catch (error) {
-        console.error("Error updating student:", error);
+        console.error("Error updating student enrollment:", error);
         return res.status(500).json({ message: "Server error", error: error.message });
     }
 }
+
 
 
 

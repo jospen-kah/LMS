@@ -1,9 +1,12 @@
 const express  = require('express');
 const quizRouter = express.Router()
-const {addQuiz, evaluateQuiz} = require('../Controllers/quizes/quiz')
+const {createQuiz, getQuizzes, getQuiz, updateQuiz, deleteQuiz} = require('../Controllers/quizes/quiz')
 
-quizRouter.post('/add', addQuiz);
-quizRouter.post('/evaluate/:id', evaluateQuiz)
+quizRouter.post('/add', createQuiz);
+quizRouter.get('/', getQuizzes);
+quizRouter.get('/:id',getQuiz);
+quizRouter.put('update/:id', updateQuiz)
+quizRouter.delete('delete/:id', deleteQuiz);
 
 
 module.exports = quizRouter;

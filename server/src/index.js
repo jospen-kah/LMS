@@ -5,10 +5,11 @@ const router = require('../src/Routes/courses');
 const authRouter = require('../src/Routes/auth');
 const quizRouter = require('../src/Routes/quiz');
 const modRouter = require('../src/Routes/module');
-const enrollRouter = require('../src/Routes/enroll')
+const startRouter = require('../src/Routes/start')
 const progressRouter = require('../src/Routes/progress');
 const cors = require('cors');
 const portalRouter = require('./Routes/portal');
+const Lessonrouter = require('./Routes/lesson');
 
 const app = express();
 dotenv.config();
@@ -21,8 +22,9 @@ app.use('/auth', authRouter);
 app.use('/quiz', quizRouter)
 app.use('/module', modRouter);
 app.use('/progress', progressRouter);
-app.use('/enroll', enrollRouter);
+app.use('/start', startRouter);
 app.use('/portal', portalRouter)
+app.use('/lesson', Lessonrouter)
 const PORT = process.env.PORT || 5000;
 
 connectDB() 

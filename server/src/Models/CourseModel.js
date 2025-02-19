@@ -7,11 +7,9 @@ const courseSchema = new Schema({
     course_title: { type: String, required: true },
     course_description: { type: String, required: true },
     course_image: { type: String, required: true }, 
-    category: { type: String, required: true }, 
+    category: { type: String, required: false }, 
+    modules: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Module' }] // Reference to Modules
+}, { timestamps: true });
     
-    studentsEnrolled: [{ type: Schema.Types.ObjectId, ref: 'Student' }], 
-    
-})
 
-// Export the model
 module.exports = mongoose.model("Course", courseSchema);

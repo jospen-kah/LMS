@@ -1,19 +1,15 @@
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 
-// Define the Question schema
-const questionSchema = new mongoose.Schema({
-  question: { type: String, required: true },
-  options: { type: [String], required: true },
-  correctAnswer: { type: String, required: true }
+const QuestionSchema = new mongoose.Schema({
+    questionText: { type: String, required: true },
+    options: [{ type: String, required: true }], // Array of options
+    correctAnswer: { type: String, required: true }
 });
 
-// Define the Quiz schema
-const quizSchema = new mongoose.Schema({
-  questions: { type: [questionSchema], required: true }, // Use questionSchema as the type for questions
-  passingScore: { type: Number, required: true }
-});
+const QuizSchema = new mongoose.Schema({
+    lesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson', required: true }, 
+    questions: [QuestionSchema] // Embedded Questions
+}, { timestamps: true });
 
-// Export the Quiz model
-const Quiz = mongoose.models.Quiz || mongoose.model("Quiz", quizSchema);
-
-module.exports = Quiz;
+module.exports = mongoose.models.Quiz || mongoose.model("Quiz", QuizSchema);

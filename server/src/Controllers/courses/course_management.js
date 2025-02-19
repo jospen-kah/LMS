@@ -21,7 +21,11 @@ async function viewAllCoursesController(req, res){
 async function viewSingleCourse(req, res){
   try{
      const courseId = req.params.id
-     const course = await courses.findById(courseId).populate('studentsEnrolled', 'username email');
+
+     if (!courseId || courseId === "null" || !mongoose.Types.ObjectId.isValid(courseId)) {
+      return res.status(400).json({ message: "Invalid course ID provided" });
+    }
+     const course = await courses.findById(courseId);
 
      if(!course) res.status(404).json({ message: `No course with the id of ${courseId} was found`})
 

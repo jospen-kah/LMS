@@ -3,7 +3,7 @@ const Course = require('../Models/CourseModel');
 const Student = require('../Models/StudentSchema');
 
 
-async function enrolledCourse(req, res) {
+async function startCourse(req, res) {
     try {
         const { courseId } = req.body;
         const userId = req.params.id;
@@ -27,4 +27,4 @@ async function enrolledCourse(req, res) {
     }
 }
 
-module.exports = {enrolledCourse}
+module.exports = {startCourse}
