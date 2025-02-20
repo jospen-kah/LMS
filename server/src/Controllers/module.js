@@ -1,14 +1,37 @@
 const express = require("express");
 const modules = require("../Models/ModuleSchema");
 const courses = require("../Models/CourseModel");
+const lesson = require("../Models/LessonSchema");
+const { default: mongoose } = require("mongoose");
 
 
 async function getModule(req, res){
 
     try{
         const {courseId} = req.params;
-       const moduleData = await modules.find({course: courseId}).populate('lesson')
-      
+        console.log(courseId)
+
+        // Validate if courseId is provided
+        if (!courseId || courseId === "null" || courseId === "undefined") {
+            return res.status(400).json({ message: "Invalid course ID" });
+        }
+
+        // Validate if courseId is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(courseId)) {
+            return res.status(400).json({ message: "Invalid course ID format" });
+        }
+
+        // Ensure course exists before querying modules
+        const courseExists = await courses.findById(courseId);
+        if (!courseExists) {
+            return res.status(404).json({ message: "Course not found" });
+        }
+
+        // Fetch modules and populate lessons
+        const moduleData = await modules.find({ course: courseId }).populate({
+            path: 'lesson',
+            strictPopulate: false 
+        });      
        
        if(!moduleData || moduleData.length === 0){
         return res.status(404).json({ message: "No modules found"})

@@ -6,7 +6,7 @@ const Lessonrouter = express.Router();
 
 
 Lessonrouter.post('/add', createLesson);
-Lessonrouter.get('/', getLessons);
+Lessonrouter.get('/:moduleId', getLessons);
 Lessonrouter.get('/:id', getLesson);
 Lessonrouter.put('update/:id',updateLesson)
 

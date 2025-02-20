@@ -7,7 +7,7 @@ async function createLesson(req, res) {
         console.log("moduleId", moduleId)
         // Check if the module exists
         const module = await Module.findById(moduleId);
-        console.log("module: ", module)
+        console.log("module: ", moduleId)
         if (!module) {
             return res.status(404).json({ message: "Module not found" });
         }
@@ -26,15 +26,26 @@ async function createLesson(req, res) {
     }
 }
 
-//get all lessons
+// Get lessons by module
 async function getLessons(req, res) {
     try {
-        const lessons = await Lesson.find().populate('module', 'title');
+        const { moduleId } = req.params; // Extract module ID from request params
+        if (!moduleId) {
+            return res.status(400).json({ message: "Module ID is required" });
+        }
+
+        const lessons = await Lesson.find({ module: moduleId }).populate('module', 'title');
+        
+        if (!lessons.length) {
+            return res.status(404).json({ message: "No lessons found for this module" });
+        }
+
         res.status(200).json(lessons);
     } catch (error) {
         res.status(500).json({ message: "Server Error", error: error.message });
     }
 }
+
 
 
 
