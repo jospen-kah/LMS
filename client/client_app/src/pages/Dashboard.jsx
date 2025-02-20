@@ -1,57 +1,31 @@
-import { useParams } from "react-router";
-import { useEffect, useState} from "react";
-import axios from "axios";
-import ProtectedRoute from "../Utils/ProtectedRoutes";
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import DashboardNav from "../components/DashboardNav";
+import './Dashboard.css'; 
 
-const Dashboard = () => {
-    const [course, setCourse] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const courseId = localStorage.getItem("courseId")
-    
+function Dashboard() {
+    const [selectedLesson, setSelectedLesson] = useState(null); // ✅ Define setSelectedLesson
 
+    return (
+        <div className="dashboard-container">
+            <nav className="sidebar">
+                {/* Pass setSelectedLesson as a prop to DashboardNav */}
+                <DashboardNav setSelectedLesson={setSelectedLesson} />
+            </nav>
 
-    useEffect(() => {
-        const fetchCourse = async () => {
-            try {
-                
-                const response = await axios.get(`http://localhost:5000/courses/${courseId}`);
-                // console.log("data:", response.data);
-                setCourse(response.data.course);
-                setLoading(false);
-            }
-            catch (err) {
-    setError('Failed to fetch course details.');
-    setLoading(false);
-
-}
-        };
-fetchCourse();
-    }, [courseId]);
-
-
-
-
-if (loading) {
-    return <p>Loading...</p>;
-}
-if (error) {
-    return <p>{error}</p>;
-}
-
-return (
-    <ProtectedRoute>
-
-        <div className="coursedetails">
-            
-            <h1>Dashboard</h1>
-            <h2>{course.course_name}</h2>
-            <p>{course.course_description}</p>
-
+            <div className="dashboard-content">
+                {/* Display the selected lesson content */}
+                {selectedLesson ? (
+                    <div className="lesson-content">
+                        <h2>{selectedLesson.title}</h2>
+                        <p>{selectedLesson.content}</p>
+                    </div>
+                ) : (
+                    <Outlet /> // Default content
+                )}
+            </div>
         </div>
-    </ProtectedRoute>
-);
-};
+    );
+}
 
 export default Dashboard;
-

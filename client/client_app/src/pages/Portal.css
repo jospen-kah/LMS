@@ -10,6 +10,7 @@
 .portal{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 .portal .welcome{
     padding: 0 4rem;
@@ -28,7 +29,10 @@
     background-color: #fff;
     border-radius: 5px;
     padding: 1rem;
-    
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .content > p{
     padding: 1rem 0;
@@ -37,12 +41,7 @@
 .enroll-img > img{
     border-radius: 5px;
 }
-.enroll-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-}
 .start{
     display: flex;
     justify-content: end;

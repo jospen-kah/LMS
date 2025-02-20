@@ -28,19 +28,20 @@ function Portal() {
         fetchUserData();
     }, [id]);
 
-    const handleStartCourse = (courseId) => {
-        // Store the enrolled courses in localStorage if you want to keep track of them
+    const handleStartCourse = (newCourseId) => {
         let enrolledCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
 
         // Add the course ID to the enrolled courses if not already added
-        if (!enrolledCourses.includes(courseId)) {
-            enrolledCourses.push(courseId);
+        if (!enrolledCourses.includes(newCourseId)) {
+            enrolledCourses.push(newCourseId);
+            localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
         }
 
-        localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+        localStorage.setItem("activeCourseId", newCourseId);
+
 
         // Navigate to the course dashboard with the user and course ID
-        navigate(`/dashboard/${id}`);
+        navigate(`/dashboard/${newCourseId}`);
     };
 
     if (loading) return <div className='loading'>Loading...</div>;
@@ -61,7 +62,6 @@ function Portal() {
                                 <div className='content'>
                                     <h3>{course.course_title}</h3>
                                     <p>{course.course_description}</p>
-                                    <p>{course._id}</p>
                                 </div>
                                 <div className='start'>
                                     <button onClick={() => handleStartCourse(course._id)}>Start Course</button>

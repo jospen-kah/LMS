@@ -1,0 +1,20 @@
+.modules{
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.modules-content .module-header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.modules-content .lessons-list{
+    padding: 0 1rem;
+}
+
+.lessons-list > li{
+    padding: .5rem 0;
+}
+

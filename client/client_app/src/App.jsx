@@ -12,7 +12,7 @@ import Register from "./pages/Registration";
 import { AuthProvider } from './components/Auth';
 import Dashboard from './pages/Dashboard';
 import DashboardLayout from './components/DashboardLayout';
-import Profile from './pages/profile';
+import Profile from './pages/Profile';
 
 
 

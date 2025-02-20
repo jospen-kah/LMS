@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Fix incorrect import
+import { Link } from "react-router-dom";
 import "./DashboardNav.css";
-import { ChevronDown, ChevronUp, CircleCheckBig, Menu, User, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import ProgressBar from "./progressBar";
 import Module from "./Module";
 
-
-function DashboardNav() {
+function DashboardNav({ setSelectedLesson }) {  // Ensure setSelectedLesson is received as a prop
     const [click, setClick] = useState(false);
-    const [clickChevron, setClickChevron] = useState(true)
-
 
     const handleClick = () => setClick(!click);
-    const handleChevron = () => setClickChevron(!clickChevron);
 
     return (
         <div className="dashnav">
@@ -21,47 +17,8 @@ function DashboardNav() {
                 <h2>LMS</h2>
             </div>
 
-            <div className="dash-links">
-                <div className="links" onClick={handleChevron}>
-                    <div className="link-content">
-                        <CircleCheckBig color="#0f0" />
-                        <Link to={`/dashboard/module1`} className="dash-link">
-                           <Module />
-                        </Link>
-                    </div>
-                    {clickChevron ? <ChevronDown /> : <ChevronUp />}
-                </div>
-
-                <div className="links" onClick={handleChevron}>
-                    <div className="link-content">
-                        <CircleCheckBig color="#0f0" />
-                        <Link to={`/dashboard/module1`} className="dash-link">
-                            Modules 1
-                        </Link>
-                    </div>
-                    {clickChevron ? <ChevronDown /> : <ChevronUp />}
-                </div>
-
-                <div className="links" onClick={handleChevron}>
-                    <div className="link-content">
-                        <CircleCheckBig color="#fff" />
-                        <Link to={`/dashboard/module1`} className="dash-link">
-                            Modules 1
-                        </Link>
-                    </div>
-                    {clickChevron ? <ChevronDown /> : <ChevronUp />}
-                </div>
-
-                <div className="links" onClick={handleChevron}>
-                    <div className="link-content">
-                        <CircleCheckBig color="#fff" />
-                        <Link to={`/dashboard/module1`} className="dash-link">
-                            Modules 1
-                        </Link>
-                    </div>
-                    {clickChevron ? <ChevronDown /> : <ChevronUp />}
-                </div>
-            </div>
+            {/* Pass setSelectedLesson to Module */}
+            <Module setSelectedLesson={setSelectedLesson} />
 
             <ProgressBar />
             <Link to="dashboard/user/profile" className="profile-link">
@@ -69,8 +26,7 @@ function DashboardNav() {
                     <User size={35} fill="#fff" />
                     <p>Profile</p>
                 </div>
-            </Link >
-
+            </Link>
         </div>
     );
 }

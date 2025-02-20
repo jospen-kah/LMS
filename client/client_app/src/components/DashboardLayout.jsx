@@ -5,7 +5,7 @@ import './DashboardLayout.css';
 
 function DashboardLayout() {
   return (
-    <div className='dashboard-content'>
+    <div className='dashboard-layout-content'>
       <DashboardNav />
       <div>
         < Outlet />
