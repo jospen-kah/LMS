@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import {  ChevronUp } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import "./Module.css";
 import { Link } from 'react-router';
@@ -51,7 +51,7 @@ function Module({ setSelectedLesson }) {
 
     // Pass the clicked lesson to parent (Dashboard)
     const handleLessonClick = (lesson) => {
-        setSelectedLesson(lesson); // Send the lesson to the parent component (Dashboard)
+        setSelectedLesson(lesson); 
     };
 
     if (loading) return <p>Loading Modules ...</p>;
@@ -63,16 +63,23 @@ function Module({ setSelectedLesson }) {
                 <div key={module._id} className="modules-content">
                     <div className="module-header" onClick={() => toggleExpand(module._id)}>
                         <h3>{module.title}</h3>
-                        {expandedModule === module._id ? <ChevronUp /> : <ChevronDown />}
+                        <span className={`chevron-icon ${expandedModule === module._id ? "rotate-up" : "rotate-down"}`}>
+                        {expandedModule === module._id ? <ChevronUp size={35} /> : <ChevronUp size={35} />}
+                        </span>
                     </div>
 
                     {expandedModule === module._id && lessons[module._id] && (
                         <ul className="lessons-list">
                             {lessons[module._id].map((lesson, index) => (
                                 
-                                    <li key={index} className="lesson-item" onClick={() => handleLessonClick(lesson)}>
+                                    <li key={index} className="lesson-item" onClick={() => handleLessonClick(lesson)}
+                                    
+                                    >
                                         {lesson.title}
+                                        {/* <p>Quiz</p> */}
+                                        
                                     </li>
+                                    
                                 
                             ))}
                         </ul>

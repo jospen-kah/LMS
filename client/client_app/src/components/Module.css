@@ -8,6 +8,26 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 0;
+    justify-content: space-between;
+    
+}
+.module-header >h3{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.module-header .chevron-icon {
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    display: inline-block; /* Ensure transform works properly */
+}
+
+.rotate-up {
+    transform: rotate(180deg);
+    transition-delay: 0.2s; /* Add delay when rotating up */
+}
+
+.rotate-down {
+    transform: rotate(0deg);
 }
 
 .modules-content .lessons-list{
@@ -16,5 +36,8 @@
 
 .lessons-list > li{
     padding: .5rem 0;
+}
+.lesson-item{
+    font-size: 13px;
 }
 

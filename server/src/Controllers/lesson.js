@@ -3,7 +3,7 @@ const Module = require('../Models/ModuleSchema');
 
 async function createLesson(req, res) {
     try {
-        const { title, content, moduleId } = req.body;
+        const { title, content, moduleId, video } = req.body;
         console.log("moduleId", moduleId)
         // Check if the module exists
         const module = await Module.findById(moduleId);
@@ -13,7 +13,7 @@ async function createLesson(req, res) {
         }
 
         // Create the lesson
-        const lesson = new Lesson({ title, content, module: moduleId });
+        const lesson = new Lesson({ title, content, module: moduleId, video });
         await lesson.save();
 
         // Add lesson to module
@@ -76,7 +76,7 @@ async function updateLesson(req, res) {
 
         const updatedLesson = await Lesson.findByIdAndUpdate(
             lessonId,
-            { title, content },
+            { title, content, video },
             { new: true, runValidators: true }
         );
 
