@@ -38,7 +38,8 @@ const App = () => {
 
                     <Route element={<DashboardLayout />}>
                         <Route path="/dashboard/:courseId" element={<Dashboard />} />
-                        <Route path="/dashboard/user/profile" element={<Profile />} />
+                        <Route path="/profile/user/:id" element={<Profile />} />
+                        {/* <Route path="/quiz/:id" element={<Quiz/> }/> */}
                     </Route>
 
                 </Routes>

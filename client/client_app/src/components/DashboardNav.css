@@ -21,6 +21,11 @@
     align-items: center;
 }
 
+.nav-head > h2>  a{
+    text-decoration: none;
+    color: #fff;
+}
+
 
 
 

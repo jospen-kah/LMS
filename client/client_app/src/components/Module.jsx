@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {  ChevronUp } from 'lucide-react';
+import { ChevronUp } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import "./Module.css";
 import { Link } from 'react-router';
@@ -10,6 +10,8 @@ function Module({ setSelectedLesson }) {
     const [error, setError] = useState(null);
     const [lessons, setLessons] = useState({});
     const [expandedModule, setExpandedModule] = useState(null);
+    // const activeCourseId = localStorage.getItem("activeCourseId")
+
 
     const courseId = localStorage.getItem('activeCourseId');
 
@@ -51,7 +53,7 @@ function Module({ setSelectedLesson }) {
 
     // Pass the clicked lesson to parent (Dashboard)
     const handleLessonClick = (lesson) => {
-        setSelectedLesson(lesson); 
+        setSelectedLesson(lesson);
     };
 
     if (loading) return <p>Loading Modules ...</p>;
@@ -62,26 +64,30 @@ function Module({ setSelectedLesson }) {
             {modules.map((module) => (
                 <div key={module._id} className="modules-content">
                     <div className="module-header" onClick={() => toggleExpand(module._id)}>
-                        <h3>{module.title}</h3>
+                        <h3>
+                                {module.title}
+                        </h3>
                         <span className={`chevron-icon ${expandedModule === module._id ? "rotate-up" : "rotate-down"}`}>
-                        {expandedModule === module._id ? <ChevronUp size={35} /> : <ChevronUp size={35} />}
+                            {expandedModule === module._id ? <ChevronUp size={35} /> : <ChevronUp size={35} />}
                         </span>
                     </div>
 
                     {expandedModule === module._id && lessons[module._id] && (
                         <ul className="lessons-list">
                             {lessons[module._id].map((lesson, index) => (
-                                
-                                    <li key={index} className="lesson-item" onClick={() => handleLessonClick(lesson)}
-                                    
-                                    >
-                                        {lesson.title}
-                                        {/* <p>Quiz</p> */}
-                                        
-                                    </li>
-                                    
-                                
+
+                                <li key={index} className="lesson-item" onClick={() => handleLessonClick(lesson)}
+
+                                >
+                                    {lesson.title}
+
+                                </li>
+
+
                             ))}
+                            <li className="lesson-item quiz-item" onClick={() => handleQuizClick(module._id)}>
+                            <p>📝 Take Quiz </p>
+                        </li>
                         </ul>
                     )}
                 </div>
