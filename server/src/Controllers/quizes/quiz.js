@@ -1,23 +1,23 @@
 const Quiz = require('../../Models/QuizSchema');
-const Lesson = require('../../Models/LessonSchema');
+const Module = require('../../Models/ModuleSchema');
 
 // Create a quiz for a lesson
 async function createQuiz(req, res) {
     try {
-        const { title, questions, lessonId } = req.body;
+        const { questions, moduleId } = req.body;
         // Check if the lesson exists
-        const lesson = await Lesson.findById(lessonId);
-        if (!lesson) {
-            return res.status(404).json({ message: "Lesson not found" });
+        const module = await Module.findById(moduleId);
+        if (!module) {
+            return res.status(404).json({ message: "module not found" });
         }
 
         // Create quiz
-        const quiz = new Quiz({ title, questions, lesson: lessonId });
+        const quiz = new Quiz({  questions, module: moduleId });
         await quiz.save();
 
         // Add quiz to lesson
-        lesson.quiz = quiz._id;
-        await lesson.save();
+        module.quiz = quiz._id;
+        await module.save();
 
         res.status(201).json({ message: "Quiz created successfully", quiz });
     } catch (error) {
@@ -35,17 +35,18 @@ async function getQuizzes(req, res) {
     }
 }
 
-// Get a single quiz
+// Get quiz with respect to the module
 async function getQuiz(req, res) {
     try {
-        const { quizId } = req.params;
-        const quiz = await Quiz.findById(quizId).populate('lesson', 'title');
+        const { moduleId } = req.params;
+        console.log("ModuleId: ", moduleId)
+        const quizzes = await Quiz.find({module: moduleId}).populate('module', 'title');
 
-        if (!quiz) {
-            return res.status(404).json({ message: "Quiz not found" });
+        if (quizzes.length === 0) {
+            return res.status(404).json({ message: "No quizzes found for this Module" });
         }
 
-        res.status(200).json(quiz);
+        res.status(200).json(quizzes);
     } catch (error) {
         res.status(500).json({ message: "Server Error", error: error.message });
     }
@@ -55,11 +56,11 @@ async function getQuiz(req, res) {
 async function updateQuiz(req, res) {
     try {
         const { quizId } = req.params;
-        const { title, questions } = req.body;
+        const { questions } = req.body;
 
         const updatedQuiz = await Quiz.findByIdAndUpdate(
             quizId,
-            { title, questions },
+            {  questions },
             { new: true, runValidators: true }
         );
 

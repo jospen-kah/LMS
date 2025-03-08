@@ -8,7 +8,7 @@ const QuestionSchema = new mongoose.Schema({
 });
 
 const QuizSchema = new mongoose.Schema({
-    lesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson', required: true }, 
+    module: { type: mongoose.Schema.Types.ObjectId, ref: 'Module', required: true }, 
     questions: [QuestionSchema] // Embedded Questions
 }, { timestamps: true });
 
