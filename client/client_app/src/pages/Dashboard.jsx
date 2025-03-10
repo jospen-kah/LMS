@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import DashboardNav from "../components/DashboardNav";
+import Quiz from "../components/Quiz"; // ✅ Import Quiz component
 import './Dashboard.css';
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 function Dashboard() {
-    const [selectedLesson, setSelectedLesson] = useState(null); // ✅ Track selected lesson
-    const [firstLesson, setFirstLesson] = useState(null); // ✅ Track first lesson from modules
+    const [selectedLesson, setSelectedLesson] = useState(null);
+    const [selectedQuiz, setSelectedQuiz] = useState(null); // ✅ Track quiz selection
 
-    // Set the first lesson when it becomes available
     useEffect(() => {
-        if (!selectedLesson && firstLesson) {
-            setSelectedLesson(firstLesson);
+        if (selectedQuiz) {
+            setSelectedLesson(null); // Hide lesson when quiz is selected
         }
-    }, [firstLesson, selectedLesson]);
+    }, [selectedQuiz]);
 
     return (
         <div className="dashboard-container">
+            {/* Sidebar Navigation */}
             <nav className="sidebar">
-                {/* Pass setSelectedLesson & setFirstLesson to DashboardNav */}
                 <DashboardNav 
                     setSelectedLesson={setSelectedLesson} 
-                    setFirstLesson={setFirstLesson} // ✅ Pass first lesson setter
+                    setSelectedQuiz={setSelectedQuiz} // ✅ Pass setSelectedQuiz
                 />
             </nav>
 
+            {/* Main Content Area */}
             <div className="dashboard-content">
-                {/* Display the selected lesson content */}
-                {selectedLesson ? (
+                {selectedQuiz ? (
+                    <Quiz moduleId={selectedQuiz} setSelectedQuiz={setSelectedQuiz} /> // ✅ Display quiz in content
+                ) : selectedLesson ? (
                     <div className="lesson-content">
                         <h2>{selectedLesson.title}</h2>
                         <p>{selectedLesson.content}</p>
 
-                        {/* Video Section (if available) */}
                         {selectedLesson.video && (
                             <div className="lesson-video">
                                 <iframe
@@ -45,18 +45,9 @@ function Dashboard() {
                                 ></iframe>
                             </div>
                         )}
-
-                        <div className="lesson-navigation">
-                            <button>
-                                <ChevronLeft /> Previous
-                            </button>
-                            <button>
-                                Next <ChevronRight />
-                            </button>
-                        </div>
                     </div>
                 ) : (
-                    <Outlet /> // Default content (renders `DashboardHome` if no lesson is selected)
+                    <Outlet />
                 )}
             </div>
         </div>

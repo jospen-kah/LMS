@@ -129,6 +129,17 @@ body {
         }
       }
     }
+
+    .no-account{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      a{
+        text-decoration: none;
+        color: #6897de;
+      }
+    }
   }
 
 }

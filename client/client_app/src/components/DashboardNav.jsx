@@ -5,10 +5,10 @@ import { Menu, User, X } from "lucide-react";
 import ProgressBar from "./progressBar";
 import Module from "./Module";
 
-function DashboardNav({ setSelectedLesson }) {  // Ensure setSelectedLesson is received as a prop
+function DashboardNav({ setSelectedLesson, setSelectedQuiz }) {  
     const [click, setClick] = useState(false);
-    const user = JSON.parse(localStorage.getItem("user"))
-    const courseId = localStorage.getItem("activeCourseId")
+    const user = JSON.parse(localStorage.getItem("user"));
+    const courseId = localStorage.getItem("activeCourseId");
 
     const handleClick = () => setClick(!click);
 
@@ -17,14 +17,11 @@ function DashboardNav({ setSelectedLesson }) {  // Ensure setSelectedLesson is r
             <div className="nav-head" onClick={handleClick}>
                 {click ? <X /> : <Menu />}
                 <h2>
-                    <Link to={`/dashboard/${courseId}`}>
-                        LMS
-                    </Link>
+                    <Link to={`/dashboard/${courseId}`}>LMS</Link>
                 </h2>
             </div>
 
-            {/* Pass setSelectedLesson to Module */}
-            <Module setSelectedLesson={setSelectedLesson} />
+            <Module setSelectedLesson={setSelectedLesson} setSelectedQuiz={setSelectedQuiz} /> {/* ✅ Pass setSelectedQuiz */}
 
             <ProgressBar />
             <Link to={`/profile/user/${user.id}`} className="profile-link">
